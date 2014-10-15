@@ -1,0 +1,7 @@
+name = KSU Custom Tweaks
+description = "Custom tweaks that dont belong in a specific module for things like restricting node counts, one off customizations, etc."
+core = 7.x
+
+; Views plugins
+files[] = includes/views/handlers/ksu_custom_tweaks_plugin_argument_validate_group_short_name.inc
+files[] = includes/views/handlers/ksu_custom_tweaks_plugin_argument_default_group_context_short_name.inc

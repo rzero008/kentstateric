@@ -1,0 +1,24 @@
+<?php
+
+$plugin = array(
+    'title' => t('Owl Carousel'),
+    'description' => t('Show panel panes in a region in an Owl Carousel.'),
+    'render region' => 'kent_state_og_slideshow_style_render_region',
+    'settings form' => 'kent_state_og_slideshow_style_settings_form',
+);
+
+//returns strong output;
+function theme_kent_state_og_slideshow_style_render_region($vars) {
+    //echo '<pre>';var_dump($vars['panes']);exit;
+    $content = implode("\n",$vars['panes']);
+    foreach($vars['panes'] as $pane){
+        //var_dump($pane);
+    }
+    return $content;
+}
+
+//returns form
+function kent_state_og_slideshow_style_settings_form($style_settings) {
+    $form = array();
+    return $form;
+}

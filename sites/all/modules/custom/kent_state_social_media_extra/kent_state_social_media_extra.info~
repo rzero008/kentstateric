@@ -1,0 +1,5 @@
+name = Kent State Events Extra
+description = "Adds extra functionality to the Kent State Events Feature"
+core = 7.x
+dependencies[] = kent_state_core
+dependencies[] = kent_state_og

@@ -1,0 +1,59 @@
+.block.block-kent-state-blocks.group-megamenu{
+    width:100%;
+}
+
+.block.block-kent-state-blocks.group-megamenu ul{
+    list-style:none;
+    padding:0;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-wrapper{
+    position:relative;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-wrapper > li{
+    display:inline-block;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-wrapper .megamenu-title{
+    padding:3px;
+    display:block;
+}
+
+.block.block-kent-state-blocks.group-megamenu ul.megamenu-wrapper > li:last-child{
+    border:none;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-wrapper > li.active .megamenu-container{
+    visibility:visible;
+    opacity:1;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-wrapper > li> a{
+    transition:all .2s ease-in;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-wrapper > li.active > a{
+    color:black;
+    background-color:white;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-container{
+    background-color:white;
+    color:black;
+    transition:all .2s ease-in;
+    z-index:100;
+    position:absolute;
+    width:100%;
+    left:0;
+    visibility:hidden;    
+    opacity:0;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-container .megamenu-links{
+    float:left;
+}
+
+.block.block-kent-state-blocks.group-megamenu .megamenu-container .megamenu-extra{
+    float:right;
+}

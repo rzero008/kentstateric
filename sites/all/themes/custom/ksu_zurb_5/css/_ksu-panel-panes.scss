@@ -1,0 +1,92 @@
+.pane-views-panes{
+    .list-item{
+        transition:all .2s ease-out;
+        @include panelShadow;
+        &:hover{
+            @include panelShadowHover;
+        }
+    }
+}
+
+.panel-pane.pane-block.pane-kent-state-blocks-campus-locations{
+    .pane-content{
+        ul[class*="block-grid-"]{
+            color:black;
+            > li{
+                > a{
+                    font-weight:bold;
+                }
+                a{
+                    color:$ksu-blue;
+                }
+            }
+        }
+    }
+}
+
+.panel-pane.pane-block.pane-kent-state-blocks-special-feature{
+    background-color:$ksu-blue;    
+    text-align:center;
+    padding:.5em;
+    transition:all .3s ease-out;
+    &:hover{
+        background-color:$dark-blue;
+    }
+    a{
+        color:#fff;
+    }
+}
+
+.pane-page-breadcrumb{
+    padding-top:0;
+}
+
+.panel-pane.pane-block.pane-kent-state-blocks-group-primary-menu{
+    .pane-content{
+        >ul.menu{
+            margin:0;
+        }
+        ul.menu{
+            list-style:none;
+            a{
+                float:left;
+                width:100%;
+                padding:.2em;
+            }
+        }
+    }
+}
+
+.og_menu{
+    list-style:none;
+    margin:0;
+    &.list_icon{
+        li{
+        }
+        img{
+            display:block;
+            max-width:110px;
+            max-height:110px;
+        }
+    }
+    &.inline_icon{
+        
+        li{
+            display:inline-block;
+            text-align:center;
+            padding:.5em;
+        }
+        img{
+            display:block;
+            max-width:110px;
+            max-height:110px;
+        }
+    }
+    &.html_grid{
+        img{
+            display:block;
+            max-width:110px;
+            max-height:110px;
+        }
+    }
+}

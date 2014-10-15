@@ -1,0 +1,59 @@
+/*
+Syntax error: File to import not found or unreadable: compass/css3/pie.
+              Load paths:
+                /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss
+                /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss
+        on line 6 of /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss/vendor/pie.scss
+
+1: // this file demonstrates how to use the CSS PIE extension for
+2: // legacy versions of Internet Explorer. In many cases, PIE will allow
+3: // you to style in CSS things that you'd have to do using image chops otherwise.
+4: //
+5: // Note: Each element that has PIE enabled on it will add about 10ms to your page load.
+6: @import "compass/css3/pie";
+7: @import "compass/css3";
+8: 
+9: // Set this to wherever you end up putting your behavior file.
+10: //
+11: // **Note:** this file must be served as a root-relative resource or
+
+Backtrace:
+/var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss/vendor/pie.scss:6
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:45:in `import'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:28:in `imported_file'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:37:in `css_import?'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `map'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/root_node.rb:20:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/engine.rb:315:in `_render'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/engine.rb:262:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:201:in `each'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin.rb:81:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:443:in `watch_or_update'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:326:in `process_result'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:41:in `parse'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:21:in `parse!'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: compass/css3/pie.\A               Load paths:\A                 /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss\A                 /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss\A         on line 6 of /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss/vendor/pie.scss\A \A 1: // this file demonstrates how to use the CSS PIE extension for\A 2: // legacy versions of Internet Explorer. In many cases, PIE will allow\A 3: // you to style in CSS things that you'd have to do using image chops otherwise.\A 4: //\A 5: // Note: Each element that has PIE enabled on it will add about 10ms to your page load.\A 6: @import \"compass/css3/pie\";\A 7: @import \"compass/css3\";\A 8: \A 9: // Set this to wherever you end up putting your behavior file.\A 10: //\A 11: // **Note:** this file must be served as a root-relative resource or"; }

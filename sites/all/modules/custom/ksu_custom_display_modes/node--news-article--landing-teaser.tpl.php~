@@ -1,0 +1,19 @@
+<?php 
+/* $node : full node object
+ * $FIELDNAME : field variables. Example $field_admin_featured_image, $body
+ */
+
+//echo '<pre>';var_dump($title);echo '</pre>';
+?>
+
+<div class="large-12 clearfix node landing-teaser">
+  <div class="large-4 left">
+    <?php if(!empty($field_admin_teaser_image)): ?>
+      <img src="<?php echo image_style_url('large', $field_admin_teaser_image['und'][0]['uri']) ?>">
+    <?php endif; ?>
+  </div>
+  <div class="large-8 right">
+    <div><h3><?php echo l($title, 'node/'.$node->nid); ?></h3></div>
+    <div><?php echo $body[0]['summary']; ?></div>
+  </div>
+</div>

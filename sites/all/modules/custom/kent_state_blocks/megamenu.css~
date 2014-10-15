@@ -1,0 +1,45 @@
+.block.group-megamenu ul{
+    list-style:none;
+    padding:0;
+}
+
+.block.group-megamenu ul.megamenu-wrapper{
+    position:relative;
+}
+
+.block.group-megamenu ul.megamenu-wrapper > li{
+    display:inline-block;
+    border-right:1px solid black;
+}
+
+.block.group-megamenu ul.megamenu-wrapper > li .megamenu-title{
+    padding:3px;
+}
+
+.block.group-megamenu ul.megamenu-wrapper > li:last-child{
+    border:none;
+}
+
+.block.group-megamenu .megamenu-container.active{
+    visibility:visible;
+    opacity:1;
+}
+
+.block.group-megamenu .megamenu-container{
+    background-color:white;
+    transition:all .5s ease-in;
+    z-index:1;
+    position:absolute;
+    width:100%;
+    left:0;
+    visibility:hidden;    
+    opacity:0;
+}
+
+.block.group-megamenu .megamenu-container .megamenu-links{
+    float:left;
+}
+
+.block.group-megamenu .megamenu-container .megamenu-extra{
+    float:right;
+}

@@ -1,0 +1,269 @@
+.top-bar{
+    h1, h5{
+        transition: all .3s ease-in;
+        background-color:$dark-blue;        
+    }    
+    h5{
+        &:hover{
+            background-color:$ksu-blue;
+        }
+    }
+    .title-area{
+        .name{
+            img{
+                -webkit-transform: translate3d(0, 0, 0);
+                width:220px;
+            }
+        }
+    }
+    .top-bar-section{
+        ul{ 
+            background-color:$dark-blue;
+            li>a{
+                background-color:$dark-blue;
+                transition: .3s all ease-in;
+                &:hover{
+                    background-color:$ksu-blue;
+                }
+            }
+        }
+    }
+    form{
+        input{
+            padding: 0.7em;
+        }
+        i{
+            position: relative;
+            top: -4px;
+        }
+        .row.search-links{
+            display:none;
+        }
+    }
+}
+
+.block-kent-state-blocks-site-utility-menu{
+    margin-top:.5em;
+    a{
+        color:white;
+    }
+    .content > a{
+        padding-right:.5em;
+        &:last-of-type:after{
+            content: '';
+        }
+        &:after{
+            content: '|';
+            position:relative;
+            right:-.35em;
+        }
+    }
+    .flashline-login-link ~ div.f-dropdown:nth-child(2){
+        max-width:50%;
+        iframe{
+            width:100%;
+            height:250px;
+        }
+    }    
+}
+
+.block-google-appliance-ga-block-search-form{
+    margin-top:.5em;
+    width:70%;
+    float:left;
+    input{
+        margin-bottom:0;
+    }
+    button{
+        margin-bottom:.2em;
+    }
+    .search-links a{
+        color:white;
+    }
+}
+
+.block-kent-state-blocks-campus-donate{
+    display:inline-block;
+    vertical-align:top;
+    width:30%;
+    img{
+        width:100px;
+    }
+}
+
+
+.block-kent-state-blocks-campus-logo, .block-kent-state-blocks-campus-logo-footer{
+    img{
+        width:300px;
+        // That copyright icon on the right of the logo throws it off center.
+        // Wish we could remove that, I've never seen another university throw the copyright in the actual SVG.
+        // Fixes Chrome (at least) SVG rendering crazyness.
+        -webkit-transform: translate3d(0,0,0); 
+    }
+}
+
+.block-kent-state-blocks-campus-logo{
+    margin-top:-2.5em;
+    display:inline-block;
+}
+
+.block-kent-state-blocks-group-header{
+    border-top:3px solid $ksu-gold;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    a{
+        color:white;
+    }
+    .group-parent-name{
+        margin-bottom:.3em;
+        a{
+            &:hover{
+                text-decoration:underline;
+            }
+        }
+    }
+    .group-name{
+        font-size:2em;
+        display:inline-block;
+        border-bottom:1px solid white;
+        padding-bottom:.2em;
+    }
+    .group-info{
+        margin-top:.3em;
+        color:white;
+        span{
+            margin-left:.5em;
+            &:first-child{
+                margin-left:0;
+            }
+        }
+        .email{
+            text-decoration:underline;
+        }
+    }
+}
+
+.block.block-kent-state-blocks-group-megamenu{
+    @media only screen and (max-width: $medium-break){
+        display:none;
+    }
+    .content{
+        background-color:$dark-blue;
+        .megamenu-wrapper{
+            width:1024px;
+            margin:0 auto;
+            text-align:center;
+            > li {
+                margin-left: -4px;
+                .megamenu-title{
+                    padding:1em;
+                    color:white;
+                    &:hover{
+                        color:initial;
+                        background-color:white;
+                    }
+                }
+                .megamenu-container{
+                    padding-top:.5em;
+                    border-left:1px solid black;
+                    border-right:1px solid black;
+                    border-bottom:1px solid black;
+                }
+            }
+        }
+    }
+}
+
+.block-kent-state-blocks-group-footer-menu{
+    font-family: 'Roboto Slab', serif;
+    [class*="block-grid-"] {
+        margin:0;
+    }
+    a{
+        color:white;
+        &:hover{
+            text-decoration:underline;
+        }
+    }
+    ul.no-bullet{
+        li:first-child{
+            a{
+                color:$ksu-gold;
+                font-size:1.5em;
+            }
+        }
+    }
+}
+
+.block-kent-state-blocks-campus-footer{
+    .container{
+        display:inline-block;
+        padding:.5em;
+        label{
+            color:$ksu-gold;
+            font-weight:500;
+            font-size:1em;
+        }
+    }
+}
+
+.menu-block-wrapper{
+    > ul.menu{
+        padding-left:0 !important;
+        padding-top:0;
+        padding-bottom:.5em;
+        margin-left:0;
+        box-shadow: rgba(0,0,0,.2) 0 6px 5px -6px;
+    }
+    ul.menu{
+        float:left;
+        width:100%;
+        margin-left:0;
+        padding-left:1em;
+        padding-bottom:0;
+        background-color:#fff;
+        list-style:none;
+        a{
+            &.active{
+                font-weight:400;
+            }
+            margin-bottom:.3em;
+            padding-left:1em;
+            position:relative;
+            float:left;
+            width:100%;
+            padding-top:.3em;
+            padding-bottom:.3em;
+            &:before{
+                content:'';
+                background-color:$ksu-blue;
+                width:.2em;
+                height:100%;
+                position:absolute;
+                left:0;
+                top:0;
+            }
+            &:hover{
+                background-color:#ddd;
+            }
+        }
+        li{
+            float:left;
+            width:100%;
+            &.active-trail, .active{
+                display:block;
+                >a{
+                    &:before{
+                        background-color:$ksu-gold;
+                    }
+                }
+                *{
+                    display:block;
+                }
+            }
+            a{
+            }
+        }
+    }
+}
+

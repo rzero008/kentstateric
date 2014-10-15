@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Kent State Profiles Feeds feature.
+ */
+
+include_once 'kent_state_profiles_feeds.features.inc';

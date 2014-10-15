@@ -1,0 +1,25 @@
+<?php
+
+function og_menu_utilities_install() {
+  $spec = array(
+                'description' => 'The type of menu being used.',
+                'type' => 'varchar',
+                'default' => 'primary',
+                'length' => 32,                     
+                );
+  db_add_field('og_menu', 'menu_type', $spec);
+
+  db_update('system')
+    ->fields(array(
+                   'weight' => 10,
+                   ))
+    ->condition('type', 'module')
+    ->condition('name', 'og_menu_utilities')
+    ->execute();  
+}
+
+function og_menu_utilities_uninstall() {
+  db_drop_field('og_menu', 'menu_type');
+}
+
+?>

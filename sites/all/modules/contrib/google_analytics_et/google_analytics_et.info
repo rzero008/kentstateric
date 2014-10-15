@@ -1,0 +1,12 @@
+name = Google Analytics Event Tracking
+description = "Integrates with the Google Analytics module to provide enhanced event tracking."
+core = 7.x
+package = Statistics
+dependencies[] = googleanalytics
+
+; Information added by drupal.org packaging script on 2012-07-20
+version = "7.x-1.1"
+core = "7.x"
+project = "google_analytics_et"
+datestamp = "1342822310"
+

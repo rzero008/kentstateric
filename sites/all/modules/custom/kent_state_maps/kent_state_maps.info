@@ -1,0 +1,4 @@
+name = kent_state_maps
+description = "A custom module for CAMPUS BIRD Maps."
+category = Kent Custom
+core = 7.x

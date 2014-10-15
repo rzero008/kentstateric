@@ -1,0 +1,53 @@
+<?php
+
+define('KSU_CUSTOM_DISPLAY_MODES_PATH', drupal_get_path('module', 'ksu_custom_display_modes'));
+
+/**
+* Implements hook_entity_info_alter()
+*/
+function ksu_custom_display_modes_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['landing_teaser'] = array(
+    'label' => t('Landing Page Teaser'),
+    'custom settings' => TRUE,
+  );
+    
+  $entity_info['node']['view modes']['vertical_teaser'] = array(
+    'label' => t('Vertical Teaser'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+* Implements hook_preprocess_node()
+*/
+function ksu_custom_display_modes_preprocess_node(&$vars) {             
+    if($vars['view_mode'] == 'landing_teaser') {
+        $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__landing_teaser';
+    }
+}
+
+/**
+* Implements hook_theme_registry_alter()
+*/
+function ksu_custom_display_modes_theme_registry_alter(&$theme_registry) {
+    $theme_registry_copy = $theme_registry;
+    _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'ksu_custom_display_modes', KSU_CUSTOM_DISPLAY_MODES_PATH);
+    $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+    // A list of templates the module will provide templates for
+    $hooks = array('node');
+    foreach ($hooks as $h) {
+        // Add the key 'theme paths' if it doesn't exist in this theme's registry
+        if (!isset($theme_registry[$h]['theme paths'])) {
+            $theme_registry[$h]['theme paths'] = array();
+        }
+        //Shift this module's directory to the top of the theme path list
+        if(is_array($theme_registry[$h]['theme paths'])) {
+            $first_element = array_shift($theme_registry[$h]['theme paths']);
+            if ($first_element) {
+                array_unshift($theme_registry[$h]['theme paths'], $first_element, KSU_CUSTOM_DISPLAY_MODES_PATH);
+            } else {
+                array_unshift($theme_registry[$h]['theme paths'], KSU_CUSTOM_DISPLAY_MODES_PATH);
+            }
+        }
+    }
+}

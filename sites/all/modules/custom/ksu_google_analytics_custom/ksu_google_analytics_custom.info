@@ -1,0 +1,7 @@
+name = KSU Google Analytics Custom
+description = "Google Analytics tracking customizations for events, custom variables, etc."
+core = 7.x
+package = Statistics
+dependencies[] = googleanalytics
+dependencies[] = google_analytics_et
+

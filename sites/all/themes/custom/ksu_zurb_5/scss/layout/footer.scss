@@ -1,0 +1,56 @@
+// Non-modular or client styles for .l-footer region.
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+   
+   
+@mixin text-shadow($a, $b, $c, $color){
+      -webkit-text-shadow: $a $b $c $color;
+      -moz-text-shadow: $a $b $c $color;
+	  -ms-text-shadow: $a $b $c $color;
+      text-shadow: $a $b $c $color;
+}   
+
+   
+footer[role=contentinfo].l-footer{
+background-color:#7e7e7e;
+}
+
+.block-kent-state-blocks-group-footer-menu ul.no-bullet li:first-child a{
+color:#ffc82e !important;
+@include text-shadow(0, 1px, 1px, #5d5d5d);
+font-family: 'Roboto Slab', serif;
+}
+
+
+.block-kent-state-blocks-group-footer-menu a{
+font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+
+.ksu-backgroundBottom{
+
+background:-moz-linear-gradient( top, #7e7e7e 17%, rgba(0, 38, 99, 0.3) 100% ), url('../images/bottomBG.png');
+background:-webkit-gradient( linear, left top, left bottom, color-stop(17%,#7e7e7e), color-stop(100%,rgba(0, 38, 99, 0.3)) ), url('../images/bottomBG.png');
+background:-webkit-linear-gradient( top, rgba(0, 38, 99, 0.3) 100%, #7e7e7e 17% ), url('../images/bottomBG.png');
+background:-o-linear-gradient( top, #7e7e7e 17%, rgba(0, 38, 99, 0.3) 100% ), url('../images/bottomBG.png');
+background:-ms-linear-gradient( top, #7e7e7e 17%, rgba(0, 38, 99, 0.3) 100% ), url('../images/bottomBG.png');
+background:linear-gradient( to bottom, #7e7e7e 17%, rgba(0, 38, 99, 0.3) 100% ), url('../images/bottomBG.png');
+filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#7e7e7e', endColorstr='#7e7e7e',GradientType=0 );
+background-position: center bottom;
+background-repeat: no-repeat;
+background-size: cover;
+height:100%;
+float:left;
+}
+
+
+.block-kent-state-blocks-campus-footer .container label{
+color:#FFF !important;
+}
+
+#block-kent-state-blocks-campus-footer{
+color:#FFF !important;
+margin: 0px 5%;
+}

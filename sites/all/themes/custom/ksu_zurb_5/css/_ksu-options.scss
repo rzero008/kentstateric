@@ -1,0 +1,23 @@
+@mixin panelShadow {
+    box-shadow: rgba(0,0,0,.2) 0 6px 5px -6px;
+    border:1px solid rgba(230,230,230,.5);
+    padding:.5rem;
+}
+
+@mixin panelShadowClear {
+    box-shadow: none;
+    border:none;
+    padding:0;
+}
+
+@mixin panelShadowHover {
+    box-shadow: rgba(0,0,0,.2) 0 9px 5px -6px;
+    border:1px solid rgba(230,230,230,1);
+}
+
+@mixin darkTextOutline {
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3),1px -1px 0 rgba(0,0,0,0.3),-1px 1px 0 rgba(0,0,0,0.3),1px 1px 0 rgba(0,0,0,0.3);
+}
+
+$medium-break: 1024px;
+$small-break: 640px;

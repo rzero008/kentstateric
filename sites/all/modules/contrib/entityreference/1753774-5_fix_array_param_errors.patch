@@ -1,0 +1,40 @@
+diff -ur /tmp/entityreference/entityreference.module entityreference/entityreference.module
+--- /tmp/entityreference/entityreference.module	2012-11-16 11:41:19.998612453 -0500
++++ entityreference/entityreference.module	2012-11-20 11:20:26.110843100 -0500
+@@ -220,13 +220,15 @@
+   if ($ids) {
+     $valid_ids = entityreference_get_selection_handler($field, $instance, $entity_type, $entity)->validateReferencableEntities(array_keys($ids));
+ 
+-    $invalid_entities = array_diff_key($ids, array_flip($valid_ids));
+-    if ($invalid_entities) {
+-      foreach ($invalid_entities as $id => $delta) {
+-        $errors[$field['field_name']][$langcode][$delta][] = array(
+-          'error' => 'entityreference_invalid_entity',
+-          'message' => t('The referenced entity (@type: @id) is invalid.', array('@type' => $field['settings']['target_type'], '@id' => $id)),
+-        );
++    if (!empty($valid_ids)) {
++      $invalid_entities = array_diff_key($ids, array_flip($valid_ids));
++      if ($invalid_entities) {
++        foreach ($invalid_entities as $id => $delta) {
++          $errors[$field['field_name']][$langcode][$delta][] = array(
++            'error' => 'entityreference_invalid_entity',
++            'message' => t('The referenced entity (@type: @id) is invalid.', array('@type' => $field['settings']['target_type'], '@id' => $id)),
++          );
++        }
+       }
+     }
+   }
+diff -ur /tmp/entityreference/plugins/selection/EntityReference_SelectionHandler_Views.class.php entityreference/plugins/selection/EntityReference_SelectionHandler_Views.class.php
+--- /tmp/entityreference/plugins/selection/EntityReference_SelectionHandler_Views.class.php	2012-11-16 11:41:20.008671293 -0500
++++ entityreference/plugins/selection/EntityReference_SelectionHandler_Views.class.php	2012-11-20 11:37:03.648687452 -0500
+@@ -128,7 +128,9 @@
+     if ($this->initializeView(NULL, 'CONTAINS', 0, $ids)) {
+       // Get the results.
+       $entities = $this->view->execute_display($display_name, $args);
+-      $result = array_keys($entities);
++      if (!empty($entities)) {
++        $result = array_keys($entities);
++      }
+     }
+     return $result;
+   }

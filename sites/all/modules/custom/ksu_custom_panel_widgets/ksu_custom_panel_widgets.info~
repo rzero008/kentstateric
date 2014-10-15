@@ -1,0 +1,5 @@
+name = KSU Custom Blocks
+description = "Adds additional blocks for custom display modes"
+core = 7.x
+
+# dependencies[] = 

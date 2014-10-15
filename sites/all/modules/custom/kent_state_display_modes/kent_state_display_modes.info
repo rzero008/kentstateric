@@ -1,0 +1,3 @@
+name = Kent State Display Modes
+description = "Adds additional display modes"
+core = 7.x

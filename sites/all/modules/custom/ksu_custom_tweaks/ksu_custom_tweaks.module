@@ -1,0 +1,265 @@
+<?php
+
+define('KSU_CUSTOM_TWEAKS_PATH', drupal_get_path('module', 'ksu_custom_tweaks'));
+
+function ksu_custom_tweaks_permission() {
+    return array(
+        'administer profiles' => array(
+            'title' => t('Administer User Profiles'),
+            'description' => t('Allows a user to add multiple profiles. Otherwise, profiles are restricted to only one per user.'),
+        ),
+    );
+}
+
+
+function ksu_custom_tweaks_node_prepare($node){
+    global $user;
+    drupal_add_js(KSU_CUSTOM_TWEAKS_PATH.'/ksu_custom_tweaks.js', array('type'=>'file', 'scope'=>'footer'));
+    
+    //profile limiter for non admins
+    if (empty($node->nid) && $node->type == 'profile') {
+        if(in_array('administrator', $user->roles) || in_array('einside editor', $user->roles)){
+            //these roles are allowed to create any number of profiles. so do nothing here. Code this better later so we dont have an empty if statement.
+        }
+        else{
+            $params = array(
+                'uid' => $user->uid,
+                'type' => 'profile'
+            );
+            $result = db_query('SELECT COUNT(nid) FROM {node} WHERE type=:type AND uid=:uid', $params)->fetchField();
+            if($result === '1'){
+                drupal_set_message(t('Sorry, but you may only create one profile for your user account'));
+                drupal_goto('user');
+            }
+        }
+    }
+}
+
+function ksu_custom_tweaks_form_alter(&$form, &$form_state, $form_id){
+    if ($form_id == 'panelizer_settings_form') {
+        $form['#submit'][] = 'ksu_custom_tweaks_panelizer_settings_form_submit';
+    }
+}
+
+function ksu_custom_tweaks_panelizer_settings_form_submit($form, &$form_state){
+    //node, user, etc : $form_state['entity']->panelizer['page_manager']->entity_type
+    //nid             : $form_state['entity']->nid
+    
+    $panelizer_key = 'panelizer:'.$form_state['entity']->panelizer['page_manager']->entity_type.':'.$form_state['entity']->nid.':page_manager';
+    $result = db_query('SELECT t.cid, t.filename, t.css FROM {ctools_css_cache} t WHERE t.cid=:cid', array(':cid'=>$panelizer_key))->fetchObject();    
+
+    //if our newly submitted css differs, kill the cache and the old file. Panels will regen everything on entity render the next time the panel is viewed.
+    if($result && ($form_state['input']['css'] !== $result->css)){
+        db_query('DELETE FROM {ctools_css_cache} WHERE cid=:cid', array(':cid'=>$panelizer_key));
+        file_unmanaged_delete($result->filename);
+    }
+}
+
+function ksu_custom_tweaks_token_info(){
+    $info['tokens']['node']['og-group-ref-path-url'] = array(
+        'name' =>'OG Group Audience URL path',
+        'description' => 'Uses the URL path from the parent group',
+    );
+    return $info;
+}
+
+function ksu_custom_tweaks_tokens($type, $tokens, array $data = array(), array $options = array()) {
+    $replacements = array();
+    
+    if ($type == 'node' && !empty($data['node'])) {
+        $node = $data['node'];        
+        foreach ($tokens as $name => $original) {
+            switch($name)
+            {                
+                case 'og-group-ref-path-url':
+                    $og_ref = isset($node->og_group_ref) ? $node->og_group_ref : '';
+                    if(!empty($og_ref)){
+                        $item = array_shift($og_ref[LANGUAGE_NONE]);                        
+                        $path = drupal_get_path_alias('node/'.$item['target_id']);                        
+                        $replacements[$original] = filter_xss($path);
+                }
+                    break;
+            }
+        }        
+    }
+    
+    return $replacements;
+}
+
+//Ok entityreference, why did I just have to copy half your module over to make this work?
+function ksu_custom_tweaks_field_formatter_info(){
+    return array(
+        'entityreference_entity_view_ctas' => array(
+            'label' => t('Rendered Entity with Calls to Action (only for featured media)'),
+            'field types' => array('entityreference'),
+            'settings' => array(
+                'view_mode' => 'default',
+                'links' => TRUE,
+            ),
+        ),
+    );
+}
+
+//ripped almost line for line from the entityreference module
+function ksu_custom_tweaks_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+    $display = $instance['display'][$view_mode];
+    $settings = $display['settings'];
+
+    if ($display['type'] == 'entityreference_entity_view_ctas') {
+        $entity_info = entity_get_info($field['settings']['target_type']);
+        $options = array('default' => t('Default'));
+        if (!empty($entity_info['view modes'])) {
+            foreach ($entity_info['view modes'] as $view_mode => $view_mode_settings) {
+                $options[$view_mode] = $view_mode_settings['label'];
+            }
+        }
+
+        $element['view_mode'] = array(
+            '#type' => 'select',
+            '#options' => $options,
+            '#title' => t('View mode'),
+            '#default_value' => $settings['view_mode'],
+            '#access' => count($options) > 1,
+        );
+
+        $element['links'] = array(
+            '#type' => 'checkbox',
+            '#title' => t('Show links'),
+            '#default_value' => $settings['links'],
+        );
+    }
+
+    return $element;
+}
+
+//ripped almost line for line from the entityreference module
+function ksu_custom_tweaks_field_formatter_settings_summary($field, $instance, $view_mode) {
+    $display = $instance['display'][$view_mode];
+    $settings = $display['settings'];
+
+    $summary = array();
+
+    if ($display['type'] == 'entityreference_entity_view_ctas') {
+        $entity_info = entity_get_info($field['settings']['target_type']);
+        $view_mode_label = $settings['view_mode'] == 'default' ? t('Default') : $settings['view_mode'];
+        if (isset($entity_info['view modes'][$settings['view_mode']]['label'])) {
+            $view_mode_label = $entity_info['view modes'][$settings['view_mode']]['label'];
+        }
+        $summary[] = t('Rendered as @mode', array('@mode' => $view_mode_label));
+        $summary[] = !empty($settings['links']) ? t('Display links') : t('Do not display links');
+    }
+
+    return implode('<br />', $summary);
+}
+
+//ripped almost line for line from the entityreference module
+function ksu_custom_tweaks_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
+  $target_ids = array();
+
+  // Collect every possible entity attached to any of the entities.
+  foreach ($entities as $id => $entity) {
+    foreach ($items[$id] as $delta => $item) {
+      if (isset($item['target_id'])) {
+        $target_ids[] = $item['target_id'];
+      }
+    }
+  }
+
+  if ($target_ids) {
+    $target_entities = entity_load($field['settings']['target_type'], $target_ids);
+  }
+  else {
+    $target_entities = array();
+  }
+
+  // Iterate through the fieldable entities again to attach the loaded data.
+  foreach ($entities as $id => $entity) {
+    $rekey = FALSE;
+
+    foreach ($items[$id] as $delta => $item) {
+      // Check whether the referenced entity could be loaded.
+      if (isset($target_entities[$item['target_id']])) {
+        // Replace the instance value with the term data.
+        $items[$id][$delta]['entity'] = $target_entities[$item['target_id']];
+        // Check whether the user has access to the referenced entity.
+        $has_view_access = (entity_access('view', $field['settings']['target_type'], $target_entities[$item['target_id']]) !== FALSE);
+        $has_update_access = (entity_access('update', $field['settings']['target_type'], $target_entities[$item['target_id']]) !== FALSE);
+        $items[$id][$delta]['access'] = ($has_view_access || $has_update_access);
+      }
+      // Otherwise, unset the instance value, since the entity does not exist.
+      else {
+        unset($items[$id][$delta]);
+        $rekey = TRUE;
+      }
+    }
+
+    if ($rekey) {
+      // Rekey the items array.
+      $items[$id] = array_values($items[$id]);
+    }
+  }
+}
+
+//ripped almost line for line from the entityreference module
+function ksu_custom_tweaks_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+    $result = array();
+    $settings = $display['settings'];
+    
+    // Rebuild the items list to contain only those with access.
+
+    foreach ($items as $key => $item) {
+        if (empty($item['access'])) {
+            unset($items[$key]);
+        }
+    }
+
+//    var_dump($items);exit;
+    switch ($display['type']) {
+
+        case 'entityreference_entity_view_ctas':
+            foreach ($items as $delta => $item) {
+                // Protect ourselves from recursive rendering.
+                static $depth = 0;
+                $depth++;
+                if ($depth > 20) {
+                    throw new EntityReferenceRecursiveRenderingException(t('Recursive rendering detected when rendering entity @entity_type(@entity_id). Aborting rendering.', array('@entity_type' => $entity_type, '@entity_id' => $item['target_id'])));
+            }
+                
+                $entity = clone $item['entity'];
+                unset($entity->content);
+                $result[$delta] = entity_view($field['settings']['target_type'], array($item['target_id'] => $entity), $settings['view_mode'], $langcode, FALSE);
+                
+                if (empty($settings['links']) && isset($result[$delta][$field['settings']['target_type']][$item['target_id']]['links'])) {
+                    $result[$delta][$field['settings']['target_type']][$item['target_id']]['links']['#access'] = FALSE;
+            }
+                $depth = 0;
+        }
+            break;
+    }        
+    
+    return $result;
+}
+
+/**
+ * Implements hook_views_plugins().
+ */
+function ksu_custom_tweaks_views_plugins() {
+    return array(
+        'argument validator' => array(
+            'og_short_name' => array(
+                'title' => t('OG Group Short Name'),
+                'handler' => 'ksu_custom_tweaks_plugin_argument_validate_group_short_name',
+                'path' => drupal_get_path('module', 'ksu_custom_tweaks')  . '/includes/views/handlers',
+            ),
+        ),
+        'argument default' => array(
+            'og_context_short_name' => array(
+                'title' => t('Current OG group from context via short name'),
+                'handler' => 'ksu_custom_tweaks_plugin_argument_default_group_context_short_name',
+                'parent' => 'views_plugin_argument_default',
+            ),
+        ),
+    );
+}
+
+?>

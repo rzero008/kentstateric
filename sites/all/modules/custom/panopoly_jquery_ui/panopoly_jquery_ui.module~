@@ -1,0 +1,31 @@
+
+<?php
+
+/**
+ * Implementation of hook_element_info_alter().
+ *
+ * Loads pre render callback, adds our js and css snippets.
+ */
+function markdown_element_info_alter(&$types) {
+    $types['text_format']['#pre_render'][] = 'markdown_pre_render_text_format';
+    drupal_add_js('sites/all/modules/custom/markdown_monospace/markdown_monospace.js', array('type' => 'file', 'scope' => 'footer'));    
+    drupal_add_css('.markdown-active{font-family:monospace;}', array('type'=>'inline'));
+}
+
+/**
+ * pre render callback
+ *
+ * Add each textarea and some extra info to Drupal.settings.markdown
+ */
+function markdown_pre_render_text_format($element) {
+    
+    if(isset($element['format'])){
+        $textarea = array(
+            'filter_id' => $element['format']['format']['#id'],
+            'textarea_id' => $element['value']['#id'],
+            'summary_id' => isset($element['summary']) ? $element['summary']['#id'] : '',
+        );
+        drupal_add_js(array('markdown_monospace' => array('inputs' => array($textarea))), 'setting');
+    }
+    return $element;
+}

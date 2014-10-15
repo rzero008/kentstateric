@@ -1,0 +1,36 @@
+<?php
+/**
+ * @file
+ * Google Analytics Event Tracking Module API Example.
+ *
+ * Shows a quick and dirty example of how to integrate the Google Analytics
+ * Event Tracking Module into an user's module.
+ */
+
+/**
+ * Implements hook_google_analytics_et_api().
+ */
+function kent_google_analytics_et_google_analytics_et_api() {
+  return _kent_google_analytics_et_set_selectors_array();
+}
+
+/**
+ * Internal function returns the example selectors array.
+ */
+function _kent_google_analytics_et_set_selectors_array() {
+  $selectors = array();
+  //Main nav link clicks
+  $selectors = array(
+    array(
+      'event' => 'click',
+      'selector' => '[data-ksu-mega-pane] a',
+      'category' => 'main navigation',
+      'action' => '!currentPage',
+      'label' => '!text',
+      'value' => 0,
+      'noninteraction' => TRUE,
+    ),
+  );
+
+  return $selectors;
+}

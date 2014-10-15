@@ -1,0 +1,8 @@
+name = Markdown Monospace 
+description = "Extends the markdown module to add monospace font styles in textareas"
+
+category = Authoring
+
+dependencies[] = markdown
+
+core = 7.x

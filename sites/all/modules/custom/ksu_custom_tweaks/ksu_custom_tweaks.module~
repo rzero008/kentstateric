@@ -1,0 +1,31 @@
+<?php
+
+define('KSU_CUSTOM_TWEAKS_PATH', drupal_get_path('module', 'ksu_custom_tweaks'));
+
+
+function ksu_custom_tweaks_node_prepare($node){
+    global $user;
+    //profile limiter for non admins
+    if (empty($node->nid) && $node->type == 'profile') {
+        if(in_array('administrator', $user->roles) || in_array('einside editor', $user->roles)){
+            //these roles are allowed to create any number of profiles. so do nothing here. Code this better later so we dont have an empty if statement.
+        }
+        else{
+            $params = array(
+                'uid' => $user->uid,
+                'type' => 'profile'
+            );
+            $result = db_query('SELECT COUNT(nid) FROM {node} WHERE type=:type AND uid=:uid', $params)->fetchField();
+            if($result === '1'){
+                drupal_set_message(t('Sorry, but you may only create one profile for your user account'));
+                drupal_goto('user');
+            }
+        }
+    }
+}
+
+function ksu_custom_tweaks_form_alter(&$form, &$form_state, $form_id){
+    drupal_add_js(KSU_CUSTOM_TWEAKS_PATH.'/ksu_custom_tweaks.js', array('type'=>'file', 'scope'=>'footer'));
+}
+
+?>

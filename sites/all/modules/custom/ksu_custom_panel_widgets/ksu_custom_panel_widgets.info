@@ -1,0 +1,5 @@
+name = KSU Custom Panel Widgets
+description = "Adds additional widgets for use in the panels IPE"
+core = 7.x
+
+# dependencies[] = 

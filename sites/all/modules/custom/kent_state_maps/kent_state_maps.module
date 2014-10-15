@@ -1,0 +1,63 @@
+<?php
+/**
+* Implements hook_block_info().
+*/
+function kent_state_maps_block_info() {
+  $blocks = array();
+  $blocks['kent_state_maps'] = array(
+    'info' => t('Kent State Maps'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function kent_state_maps_block_configure($delta='') {
+  $form = array();
+ 
+  switch($delta) {
+    case 'kent_state_maps' :
+      // Text field form element
+      $form['kent_state_maps'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Enter Maps url'),
+        '#default_value' => variable_get('kent_state_maps_url', ''),
+      );
+      break;
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function kent_state_maps_block_save($delta = '', $edit = array()) {
+  switch($delta) {
+    case 'kent_state_maps' :
+      // Saving the maps url    
+      variable_set('kent_state_maps_url', $edit['kent_state_maps']);
+      break;
+  }
+}
+
+/**
+* Implements hook_block_view().
+*/
+function kent_state_maps_block_view($delta = '') { 
+  $block = array();
+  switch ($delta) {
+    case 'kent_state_maps':
+      $block['subject'] = '';
+      $block['content'] = kent_state_maps_block_content();
+      break;
+  }
+  return $block;
+}
+function kent_state_maps_block_content() {
+    ob_start();
+    include("kent_state_maps.tpl.php");
+    $output = ob_get_clean();	
+  return $output;
+}
+?>

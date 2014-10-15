@@ -1,0 +1,127 @@
+@mixin panelShadow {
+    box-shadow: rgba(0,0,0,.2) 0 6px 5px -6px;
+    border:1px solid rgba(230,230,230,.5);
+    padding:.5rem;
+}
+
+@mixin panelShadowClear {
+    box-shadow: none;
+    border:none;
+    padding:0;
+}
+
+@mixin panelShadowHover {
+    box-shadow: rgba(0,0,0,.2) 0 9px 5px -6px;
+    border:1px solid rgba(230,230,230,1);
+}
+
+@mixin darkTextOutline {
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3),1px -1px 0 rgba(0,0,0,0.3),-1px 1px 0 rgba(0,0,0,0.3),1px 1px 0 rgba(0,0,0,0.3);
+}
+
+$medium-break: 1024px;
+$small-break: 640px;
+
+@import 'ksu-colors';
+@import 'ksu-layout';
+@import 'ksu-nodes';
+@import 'ksu-buttons';
+@import 'ksu-views';
+@import 'ksu-fields';
+@import 'ksu-panels-ipe';
+@import 'ksu-panel-panes';
+@import 'ksu-blocks';
+@import 'ksu-google-forms';
+
+body{
+    font-family: 'News Cycle', sans-serif;
+}
+
+.form-item, .form-actions{
+    margin:0;
+}
+
+table{
+    width:100%;
+    max-width:100%;
+    thead {
+        tr{ 
+            th{
+                font-weight:500;
+            }
+        }
+    }
+}
+
+a{
+    color:$cyan;
+    transition:color .2s ease-out, border .2s ease-out;
+}
+
+.panel-container{
+    padding-bottom:1rem;
+}
+
+.panel-pane{
+    float:left;
+    width:100%;
+}
+
+.owl-carousel {
+    .fadeIn{
+        transition: opacity .3s ease-out;
+        opacity:0;
+        &.active{
+            opacity:1;
+        }
+    }    
+    .fadeOut{
+        transition: opacity .3s ease-out;
+        opacity:1;
+        &.active{
+            opacity:0;
+        }
+    }
+    .owl-controls{
+        margin:0;
+    }
+    .owl-nav{
+        margin-top:0 !important;
+        position:absolute;
+        top:40%;
+        width:100%;
+        height:0px;
+        @media (max-width: $small-break) {
+            top:25%;
+        }
+        .owl-prev, .owl-next{
+            background-color:transparent !important;
+            transition:opacity .3s ease-in;
+            &:hover{
+                i{
+                    opacity:1;
+                }
+            }
+            i{
+                font-size:4em;
+                text-shadow: 0px 0px 1px #ccc;
+                opacity:.8;
+                @media (max-width: $small-break) {
+                    font-size:2em;
+                }
+            }
+        }
+        .owl-prev{
+            float:left;
+        }
+        .owl-next{
+            float:right;
+        }
+    }
+    .owl-dots{
+        position:absolute;
+        bottom:0;
+        width:100%;
+        text-align:center;
+    }
+}

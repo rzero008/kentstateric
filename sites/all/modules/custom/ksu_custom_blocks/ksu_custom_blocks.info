@@ -1,0 +1,5 @@
+name = KSU Custom Blocks
+description = "Adds additional blocks for content that is OG aware"
+core = 7.x
+
+# dependencies[] = 

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<nodes>
+  <node>
+    <Title>Physics</Title>
+    <Body>&lt;p&gt;&lt;p&gt;This is the physics home page.&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>66836</Nid>
+    <Vid>110911</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>Phone Goes Here</Phone>
+  </node>
+  <node>
+    <Title>College of Education, Health and Human Services</Title>
+    <Body>&lt;p&gt;&lt;p&gt;This is the EHHS home page.&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>65891</Nid>
+    <Vid>106836</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Department of English</Title>
+    <Body>&lt;p&gt;&lt;p&gt;This is the English homepage.&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>65151</Nid>
+    <Vid>104891</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Department of Sociology</Title>
+    <Body></Body>
+    <Nid>64726</Nid>
+    <Vid>103331</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Department of Psychology</Title>
+    <Body></Body>
+    <Nid>64721</Nid>
+    <Vid>103326</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Center for Applied Conflict Management</Title>
+    <Body></Body>
+    <Nid>64716</Nid>
+    <Vid>103321</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Columbus Program in Intergovernmental Issues</Title>
+    <Body></Body>
+    <Nid>64711</Nid>
+    <Vid>103311</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Washington Program in National Issues</Title>
+    <Body></Body>
+    <Nid>64706</Nid>
+    <Vid>103301</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Department of Political Science</Title>
+    <Body></Body>
+    <Nid>64696</Nid>
+    <Vid>103291</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>GIS | Health &amp; Hazards Lab</Title>
+    <Body></Body>
+    <Nid>64691</Nid>
+    <Vid>103281</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Department of Geography</Title>
+    <Body></Body>
+    <Nid>64686</Nid>
+    <Vid>103261</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Science of Learning &amp; Education Center</Title>
+    <Body></Body>
+    <Nid>64681</Nid>
+    <Vid>103256</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Police Academy</Title>
+    <Body></Body>
+    <Nid>64671</Nid>
+    <Vid>103246</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Air Force ROTC</Title>
+    <Body></Body>
+    <Nid>64666</Nid>
+    <Vid>103241</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Army ROTC</Title>
+    <Body></Body>
+    <Nid>64661</Nid>
+    <Vid>103236</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>School of Digital Sciences</Title>
+    <Body></Body>
+    <Nid>64656</Nid>
+    <Vid>103231</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>College of Podiatric Medicine</Title>
+    <Body></Body>
+    <Nid>64651</Nid>
+    <Vid>103226</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>College of Architecture &amp; Environmental Design</Title>
+    <Body></Body>
+    <Nid>64646</Nid>
+    <Vid>103211</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>College of the Arts</Title>
+    <Body></Body>
+    <Nid>64551</Nid>
+    <Vid>102581</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-672-2760</Phone>
+  </node>
+  <node>
+    <Title> School of Theatre and Dance</Title>
+    <Body></Body>
+    <Nid>64471</Nid>
+    <Vid>102571</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-672-2082</Phone>
+  </node>
+  <node>
+    <Title>Writing Commons</Title>
+    <Body>&lt;p&gt;&lt;p class=&quot;introduction&quot;&gt;Writing Commons Mission Statement:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;As the university writing center, the Writing Commons supports KSU students at all levels and in every academic discipline with any projects that include writing.&lt;/li&gt;&lt;li&gt;We assist writers at every stage of the composing and revising process.&lt;/li&gt;&lt;li&gt;We help writers at every level of proficiency to experience the satisfaction of developing effective written communication.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;All student writers can benefit from the feedback and support the Writing Commons provides. &amp;nbsp;Visit us to see how we can help you!&lt;/strong&gt;&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>62996</Nid>
+    <Vid>96486</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Department of Pan-African Studies</Title>
+    <Body></Body>
+    <Nid>62836</Nid>
+    <Vid>94806</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-672-2300</Phone>
+  </node>
+  <node>
+    <Title>Anthropology</Title>
+    <Body>&lt;p&gt;&lt;p class=&quot;introduction&quot;&gt;Anthropology as a discipline is more relevant today than at any time in its distinguished history.&lt;/p&gt;&lt;p&gt;Anthropology is the academic discipline that studies humans holistically through an interdisciplinary lens. It combines science with humanities, biology with culture, history with prehistory and primates with language. It is by definition concerned with human diversity and the Anthropology department at Kent State University has provided primary leadership within academia in researching this important domain.&lt;/p&gt;&lt;p&gt;Anthropology trains students to think critically, write clearly and speak thoughtfully about what it means to be human. Methodologically, we emphasize both quantitative and qualitative evaluation and train students to go beyond the statistics.&lt;/p&gt;&lt;p&gt;By focusing on the complex linkages among the three subfields of Anthropology: Cultural Anthropology, Archaeology and Biological Anthropology—and by emphasizing the importance of interdisciplinary teamwork, we prepare students to survive in an increasingly multidisciplinary and multicultural world.&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>60856</Nid>
+    <Vid>102811</Vid>
+    <Featured-Photo>&lt;img src="https://cmsdev.kent.edu/sites/default/files/Lowry%20Hall.jpg" width="1632" height="908" alt="Lowry Hall" title="Lowry Hall" /&gt;, &lt;img src="https://cmsdev.kent.edu/sites/default/files/Turner%20cores.jpg" width="1482" height="920" alt="Turner cores" title="Turner cores" /&gt;</Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-672-4363</Phone>
+  </node>
+  <node>
+    <Title>College of Arts &amp; Sciences</Title>
+    <Body>&lt;p&gt;&lt;p&gt;This is the Arts &amp;amp; Sciences home page.&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>60851</Nid>
+    <Vid>82201</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone></Phone>
+  </node>
+  <node>
+    <Title>Summer Sessions</Title>
+    <Body>&lt;p&gt;&lt;h2&gt;Take Summer Classes Wherever You Are!&lt;/h2&gt;&lt;p class=&quot;introduction&quot;&gt;Whether you’re a current Kent State student, or attend a different college, Summer Sessions at Kent State are a great way to catch up and get ahead.&lt;/p&gt;&lt;p class=&quot;introduction&quot;&gt;&lt;a href=&quot;&lt;a href="https://keys.kent.edu:44220/ePROD/bwlkffcs.P_AdvUnsecureCrseSearch?term_in=201460&quot;&gt;Hundreds"&gt;https://keys.kent.edu:44220/ePROD/bwlkffcs.P_AdvUnsecureCrseSearch?term_...&lt;/a&gt; of summer classes&lt;/a&gt;&amp;nbsp;are available—including many you can take online. See how far you can advance – when you see yourself at Kent State this summer!&lt;/p&gt;&lt;hr&gt;&lt;p class=&quot;introduction&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;h4&gt;&lt;span&gt;KENT STATE STUDENTS&lt;/span&gt;&lt;/h4&gt;&lt;div id=&quot;cs_control_3715214&quot;&gt;[[{&quot;fid&quot;:&quot;23531&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;A student hangs out in the library&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;A student hangs out in the library&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;A student hangs out in the library&quot;,&quot;title&quot;:&quot;A student hangs out in the library&quot;,&quot;height&quot;:&quot;180&quot;,&quot;width&quot;:&quot;150&quot;,&quot;class&quot;:&quot;media-element file-default image-align-left&quot;}}]]&lt;br&gt;&lt;br&gt;&lt;p&gt;1. &amp;nbsp;&lt;a href=&quot;&lt;a href="https://keys.kent.edu:44220/ePROD/bwlkffcs.P_AdvUnsecureCrseSearch?term_in=201460&quot;&gt;Check"&gt;https://keys.kent.edu:44220/ePROD/bwlkffcs.P_AdvUnsecureCrseSearch?term_...&lt;/a&gt; the summer schedule&lt;/a&gt; to see if the classes you want are being offered.&lt;br&gt;&lt;br&gt;2. &amp;nbsp;Explore &lt;a href=&quot;&lt;a href="http://www.kent.edu/financialaid/forms/summerforms.cfm&quot;&gt;Summer"&gt;http://www.kent.edu/financialaid/forms/summerforms.cfm&quot;&gt;Summer&lt;/a&gt; Financial Aid options&lt;/a&gt;, if needed.&lt;br&gt;&lt;br&gt;3. &amp;nbsp;&lt;a href=&quot;&lt;a href="http://flashline.kent.edu/&quot;&gt;Log"&gt;http://flashline.kent.edu/&quot;&gt;Log&lt;/a&gt; in to FlashLine&lt;/a&gt; and go to Student Tools &amp;amp; Courses to register.&lt;/p&gt;&lt;h4&gt;&lt;/h4&gt;&lt;h4&gt;&lt;/h4&gt;&lt;h4&gt;&lt;/h4&gt;&lt;hr&gt;&lt;h4&gt;VISITING STUDENTS&lt;/h4&gt;&lt;h4&gt;[[{&quot;fid&quot;:&quot;23536&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;A student at Risman Plaza&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;A student at Risman Plaza&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;A student at Risman Plaza&quot;,&quot;title&quot;:&quot;A student at Risman Plaza&quot;,&quot;height&quot;:&quot;180&quot;,&quot;width&quot;:&quot;150&quot;,&quot;class&quot;:&quot;media-element file-default image-align-left&quot;}}]]&lt;/h4&gt;&lt;br&gt;&lt;br&gt;1. &amp;nbsp;&lt;a href=&quot;&lt;a href="https://keys.kent.edu:44220/ePROD/bwlkffcs.P_AdvUnsecureCrseSearch?term_in=201460&quot;&gt;Check"&gt;https://keys.kent.edu:44220/ePROD/bwlkffcs.P_AdvUnsecureCrseSearch?term_...&lt;/a&gt; the summer schedule&lt;/a&gt; to see if the classes you want are being offered.&lt;br&gt;&lt;br&gt;2. &amp;nbsp;Complete a&amp;nbsp;&lt;a href=&quot;/node/19831&quot;&gt;Kent State Guest Application&lt;/a&gt;&amp;nbsp;online.&lt;br&gt;&lt;br&gt;3. &amp;nbsp;Once you’ve been admitted,&amp;nbsp;&lt;a href=&quot;&lt;a href="http://flashline.kent.edu/&quot;&gt;register"&gt;http://flashline.kent.edu/&quot;&gt;register&lt;/a&gt; online&lt;/a&gt;.&lt;br&gt;&lt;p&gt;&lt;/p&gt;&lt;h3&gt;&lt;/h3&gt;&lt;h3&gt;&lt;/h3&gt;&lt;h3&gt;&lt;/h3&gt;&lt;hr&gt;&lt;h3&gt;&lt;/h3&gt;&lt;h3&gt;FOR MORE INFORMATION ABOUT SUMMER SESSIONS, CONTACT:&lt;/h3&gt;&lt;p&gt;Marilyn Bokrass, Program Manager |&amp;nbsp;&lt;a href=&quot;&lt;a href="mailto:summer@kent.edu%20&quot;&gt;summer"&gt;mailto:summer@kent.edu%20&quot;&gt;summer&lt;/a&gt;@kent.edu&amp;nbsp;&lt;/a&gt;| 330-672-8658&lt;/p&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;&lt;a href="https://www.facebook.com/KentStateSummerSessions&quot;"&gt;https://www.facebook.com/KentStateSummerSessions&quot;&lt;/a&gt; class=&quot;secondary button&quot;&gt;&amp;nbsp;Connect With Summer Sessions on Facebook&lt;/a&gt;&lt;/p&gt;&lt;div id=&quot;cs_control_3717860&quot;&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;
+</Body>
+    <Nid>60401</Nid>
+    <Vid>78271</Vid>
+    <Featured-Photo>&lt;img src="https://cmsdev.kent.edu/sites/default/files/summer2_1.jpg" width="1500" height="996" alt="Students share a laugh while relaxing in the newly renovated Risman Plaza." title="Students share a laugh while relaxing in the newly renovated Risman Plaza." /&gt;, &lt;img src="https://cmsdev.kent.edu/sites/default/files/bike_2.jpg" width="1500" height="871" alt="A student rides his bike in front of the fountain in Risman Plaza on a warm fall day." title="A student rides his bike in front of the fountain in Risman Plaza on a warm fall day." /&gt;, &lt;img src="https://cmsdev.kent.edu/sites/default/files/DA32_0162_1.jpg" width="1500" height="1000" alt="A student studies outside during the nice weather." title="A student studies outside during the nice weather." /&gt;</Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-672-8658</Phone>
+  </node>
+  <node>
+    <Title>Online Degrees</Title>
+    <Body>&lt;p&gt;&lt;p&gt;Online Degrees Home Page&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>59041</Nid>
+    <Vid>73436</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>Phone Goes Here</Phone>
+  </node>
+  <node>
+    <Title>Online Learning</Title>
+    <Body>&lt;p&gt;&lt;p&gt;Online Learning Home Page&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>58826</Nid>
+    <Vid>73096</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>Phone Goes Here</Phone>
+  </node>
+  <node>
+    <Title>Graduate Studies</Title>
+    <Body>&lt;p&gt;&lt;div class=&quot;row&quot;&gt;&lt;!--Start Container Row--&gt;&lt;div class=&quot;large-11 large-centered columns&quot;&gt;&lt;p class=&quot;introduction&quot;&gt;Kent State, with its eight-campus system in Northeast Ohio, serves the state and the nation with excellence through more than 50 master’s programs in more than 100 areas of specialization, as well as 23 doctoral programs with more than 50 specializations.&lt;/p&gt;&lt;hr&gt;&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#applynow&quot;&gt;[[{&quot;fid&quot;:&quot;31191&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Apply Now&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Apply Now&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Apply Now&quot;,&quot;title&quot;:&quot;Apply Now&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br&gt;&lt;h5&gt;Apply Now&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#submitdocuments&quot;&gt;[[{&quot;fid&quot;:&quot;31206&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Submit Documents&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Submit Documents&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Submit Documents&quot;,&quot;title&quot;:&quot;Submit Documents&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br&gt;&lt;h5&gt;Submit Documents&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#admissions-checklist&quot;&gt;[[{&quot;fid&quot;:&quot;31251&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Checklist Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Checklist Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Checklist Icon&quot;,&quot;title&quot;:&quot;Checklist Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br&gt;&lt;h5&gt;Admissions Checklist&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;br&gt;&lt;a href=&quot;#requestinfo&quot;&gt;[[{&quot;fid&quot;:&quot;31261&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Request Info Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Request Info Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Request Info Icon&quot;,&quot;title&quot;:&quot;Request Info Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br&gt;&lt;h5&gt;Request Information&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#ga&quot;&gt;[[{&quot;fid&quot;:&quot;31221&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Money Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Money Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Money Icon&quot;,&quot;title&quot;:&quot;Money Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br&gt;&lt;h5&gt;Graduate Assistantships&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#browseprograms&quot;&gt;[[{&quot;fid&quot;:&quot;31266&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Browse Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Browse Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Browse Icon&quot;,&quot;title&quot;:&quot;Browse Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br&gt;&lt;h5&gt;Browse Graduate Programs&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;!--End Row --&gt;&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#studentsentate&quot;&gt;[[{&quot;fid&quot;:&quot;31281&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Squirrel Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Squirrel Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Squirrel Icon&quot;,&quot;title&quot;:&quot;Squirrel Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;class&quot;:&quot;media-element file-default&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;},&quot;link_text&quot;:null}]]&lt;br/&gt;&lt;h5&gt;Graduate Student Senate&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#professionaldevelopment&quot;&gt;[[{&quot;fid&quot;:&quot;31241&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Student High-Five Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Student High-Five Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Student High-Five Icon&quot;,&quot;title&quot;:&quot;Student High-Five Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;h5&gt;Graduate Professional Development&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#dissertation&quot;&gt;[[{&quot;fid&quot;:&quot;31246&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Brochure Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Brochure Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Brochure Icon&quot;,&quot;title&quot;:&quot;Brochure Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br/&gt;&lt;h5&gt;Dissertation/&lt;br/&gt;Thesis&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;a href=&quot;#GSO&quot;&gt;[[{&quot;fid&quot;:&quot;31231&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;Group of People Icon&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;Group of People Icon&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;alt&quot;:&quot;Group of People Icon&quot;,&quot;title&quot;:&quot;Group of People Icon&quot;,&quot;height&quot;:&quot;417&quot;,&quot;width&quot;:&quot;417&quot;,&quot;style&quot;:&quot;width: 80px; height: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;br&gt;&lt;h5&gt;Graduate Student Orientation&lt;/h5&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;large-2 medium-2 columns text-center&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;!--End Row --&gt;&lt;hr&gt;&lt;/div&gt;&lt;/div&gt;&lt;!--End Container Row --&gt;&lt;/p&gt;
+</Body>
+    <Nid>58821</Nid>
+    <Vid>86916</Vid>
+    <Featured-Photo>&lt;img src="https://cmsdev.kent.edu/sites/default/files/kentstate.jpg" width="2000" height="908" alt="Students walk toward the science corridor in front of the new Student Green. The green serves as a gathering place for campus festivals and performances." title="Students walk toward the science corridor in front of the new Student Green. The green serves as a gathering place for campus festivals and performances." /&gt;</Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-672-2661</Phone>
+  </node>
+  <node>
+    <Title>EXCEL</Title>
+    <Body>&lt;p&gt;&lt;p&gt;[[{&quot;fid&quot;:&quot;20896&quot;,&quot;view_mode&quot;:&quot;default&quot;,&quot;fields&quot;:{&quot;format&quot;:&quot;default&quot;,&quot;field_file_image_alt_text[und][0][value]&quot;:&quot;&quot;,&quot;field_file_image_title_text[und][0][value]&quot;:&quot;&quot;,&quot;field_bulk_image[und][0][fid]&quot;:&quot;0&quot;,&quot;field_bulk_image[und][0][display]&quot;:&quot;1&quot;},&quot;type&quot;:&quot;media&quot;,&quot;link_text&quot;:null,&quot;attributes&quot;:{&quot;height&quot;:&quot;305&quot;,&quot;width&quot;:&quot;761&quot;,&quot;style&quot;:&quot;display: block; margin-left: auto; margin-right: auto;&quot;,&quot;class&quot;:&quot;media-element file-default&quot;}}]]&lt;/p&gt;&lt;p&gt;EXCEL is a living-learning community for new freshmen Exploratory students, designed to assist with exploring careers, education, and leadership while moving students toward selecting their major by the end of freshmen year, so that students remain on their four year graduation track.&lt;/p&gt;&lt;h5&gt;Mission Statement&lt;/h5&gt;&lt;p&gt;The EXCEL (Explore, Careers, Education, Leadership) Living Learning Community is dedicated to providing the foundation for students to remain on their four year graduation path through the creation of an inspiring and engaging living learning community. EXCEL focuses on holistic learning involving the selection of a major, career exploration, academic success, and leadership. The environment within the EXCEL community fosters friendships and relationships with EXCEL students, EXCEL mentors; including, faculty and Staff members. The commitment of the EXCEL Living Learning Community is to provide enriching student experiences at Kent State University.&lt;/p&gt;&lt;h5&gt;Goals&lt;/h5&gt;&lt;p&gt;Goals of the EXCEL Living Learning Community are to create an atmosphere fostering immediate friendships and bonding among EXCEL students, peer mentors, faculty members, and staff members; to promote strong academic habits and practices; to increase global education awareness; to create opportunities to increase self-awareness and develop strong critical-think skills; to expose students to personal responsibility to self and to others; and, to engage students in leadership roles with a commitment to further develop academically successful and involved students, while providing an enriching experience at Kent State University.&lt;/p&gt;&lt;h5&gt;Benefits&lt;/h5&gt;&lt;ul&gt;&lt;li&gt;An assigned academic advisor in the Exploratory Advising Center located in Lake Hall.&lt;/li&gt;&lt;li&gt;Enrollment in a set of core classes and participation in study sessions with other EXCEL students.&lt;/li&gt;&lt;li&gt;Enrollment in an EXCEL First Year Experience (FYE) and Careers courses to research majors and careers.&lt;/li&gt;&lt;li&gt;Participation in thought provoking activities within an active and high energy environment in Lake Residence Hall.&lt;/li&gt;&lt;li&gt;Student programs, services and academic assistance tailored to enhance student success.&lt;/li&gt;&lt;li&gt;Peer mentors who plan awesome and fun activities while supporting positive student development.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp;&lt;img src=&quot;&lt;a href="http://www2.kent.edu/undergradstudies/excel/images/DSC_0224_1.jpg&quot;"&gt;http://www2.kent.edu/undergradstudies/excel/images/DSC_0224_1.jpg&quot;&lt;/a&gt; title=&quot;DSC_0224&quot; alt=&quot;DSC_0224&quot; style=&quot;display: block; margin-left: auto; margin-right: auto;&quot; width=&quot;166&quot; height=&quot;111&quot; hspace=&quot;0&quot; vspace=&quot;0&quot;&gt;&amp;nbsp;&amp;nbsp;&lt;img src=&quot;&lt;a href="http://www2.kent.edu/undergradstudies/excel/images/photo_1.JPG&quot;"&gt;http://www2.kent.edu/undergradstudies/excel/images/photo_1.JPG&quot;&lt;/a&gt; title=&quot;photo&quot; alt=&quot;photo&quot; style=&quot;display: block; margin-left: auto; margin-right: auto;&quot; width=&quot;273&quot; height=&quot;111&quot; hspace=&quot;0&quot; vspace=&quot;0&quot;&gt;&amp;nbsp;&amp;nbsp;&lt;img src=&quot;&lt;a href="http://www2.kent.edu/undergradstudies/excel/images/DSC_0211_1.jpg&quot;"&gt;http://www2.kent.edu/undergradstudies/excel/images/DSC_0211_1.jpg&quot;&lt;/a&gt; title=&quot;DSC_0211&quot; alt=&quot;DSC_0211&quot; style=&quot;display: block; margin-left: auto; margin-right: auto;&quot; width=&quot;166&quot; height=&quot;111&quot; hspace=&quot;0&quot; vspace=&quot;0&quot;&gt;&lt;/p&gt;&lt;h5&gt;&lt;strong&gt;How do I participate?&lt;/strong&gt;&lt;/h5&gt;&lt;ul&gt;&lt;li&gt;Open to first year Exploratory students at Kent State University&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;On your Housing Application, you must select Lake Hall and EXCEL Community as your top choices&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;&lt;p class=&quot;MsoListParagraph&quot;&gt;Look for a confirmation email from the EXCEL Coordinator approving your spot in the community&lt;/p&gt;&lt;/li&gt;&lt;li&gt;Get information on how to&amp;nbsp;&lt;a href=&quot;&lt;a href="https://housing.res.kent.edu/&quot;&gt;apply&lt;/a&gt;&amp;nbsp;or"&gt;https://housing.res.kent.edu/&quot;&gt;apply&lt;/a&gt;&amp;nbsp;or&lt;/a&gt; contact us with your questions:&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;&lt;a href="https://housing.res.kent.edu/HMSWebStudent/Login.asp?TargetPage=Default.asp?&quot;&gt;&lt;img"&gt;https://housing.res.kent.edu/HMSWebStudent/Login.asp?TargetPage=Default....&lt;/a&gt; src=&quot;&lt;a href="http://www2.kent.edu/undergradstudies/excel/images/applyNow_1.gif&quot;"&gt;http://www2.kent.edu/undergradstudies/excel/images/applyNow_1.gif&quot;&lt;/a&gt; style=&quot;display: block; margin-left: auto; margin-right: auto;&quot; width=&quot;226&quot; height=&quot;56&quot;&gt;&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;&lt;a href="https://app-dev.us.kent.edu/test-web4/&quot;&gt;&lt;img"&gt;https://app-dev.us.kent.edu/test-web4/&quot;&gt;&lt;img&lt;/a&gt; src=&quot;&lt;a href="http://www2.kent.edu/undergradstudies/excel/images/excel-button_1.png&quot;"&gt;http://www2.kent.edu/undergradstudies/excel/images/excel-button_1.png&quot;&lt;/a&gt; style=&quot;display: block; margin-left: auto; margin-right: auto;&quot; width=&quot;225&quot; height=&quot;60&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;div class=&quot;col2&quot;&gt;&lt;div id=&quot;cs_control_3226529&quot;&gt;&lt;div class=&quot;CS_Element_Schedule&quot; id=&quot;CS_Element_3214498_3226529&quot;&gt;&lt;div class=&quot;cs_control CS_Element_Textblock&quot; id=&quot;cs_control_3473326&quot;&gt;&lt;div class=&quot;CS_Textblock_Text&quot;&gt;&lt;p&gt;&lt;strong&gt;Contact Us&lt;br&gt;&lt;/strong&gt;EXCEL Living-Learning Community&lt;br&gt;Student Success Programs&lt;br&gt;330-672-9292&lt;br&gt;&lt;a href=&quot;&lt;a href="mailto:EXCEL@kent.edu&quot;&gt;EXCEL"&gt;mailto:EXCEL@kent.edu&quot;&gt;EXCEL&lt;/a&gt;@kent.edu&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;cs_control CS_Element_Textblock&quot; id=&quot;cs_control_3473340&quot;&gt;&lt;div class=&quot;CS_Textblock_Text&quot;&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&lt;a href="http://www.kent.edu/campuses/maps/map.cfm?lat=41.148924&amp;amp;long=-81.34484399999997&amp;amp;zoom=16&amp;amp;markerName=Lake-Hall&quot;&gt;Visit"&gt;http://www.kent.edu/campuses/maps/map.cfm?lat=41.148924&amp;amp;long=-81.344...&lt;/a&gt; Us&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;University Library – 5th Floor – Rm 510&lt;br&gt;1125 Risman Drive&lt;br&gt;Kent, Ohio 44242-0001&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;cs_control CS_Element_Textblock&quot; id=&quot;cs_control_3792616&quot;&gt;&lt;div class=&quot;CS_Textblock_Text&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;img class=&quot;decoded fkasvjoeopypfufpzzuc&quot; src=&quot;&lt;a href="http://www.publicworkspartners.com/wp-content/uploads/2014/05/facebook-icon.png&quot;"&gt;http://www.publicworkspartners.com/wp-content/uploads/2014/05/facebook-i...&lt;/a&gt; alt=&quot;&lt;a href="http://www.publicworkspartners.com/wp-content/uploads/2014/05/facebook-icon.png&quot;"&gt;http://www.publicworkspartners.com/wp-content/uploads/2014/05/facebook-i...&lt;/a&gt; width=&quot;45&quot; height=&quot;45&quot;&gt;&amp;nbsp;&lt;a href=&quot;&lt;a href="https://www.facebook.com/ExcelAtKSU&quot;&gt;EXCEL"&gt;https://www.facebook.com/ExcelAtKSU&quot;&gt;EXCEL&lt;/a&gt; at KSU&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;cs_control CS_Element_Textblock&quot;&gt;&lt;img src=&quot;&lt;a href="http://www2.kent.edu/undergradstudies/excel/images/url_1.png&quot;"&gt;http://www2.kent.edu/undergradstudies/excel/images/url_1.png&quot;&lt;/a&gt; title=&quot;url&quot; alt=&quot;url&quot; width=&quot;49&quot; height=&quot;49&quot; hspace=&quot;0&quot; vspace=&quot;0&quot;&gt;&amp;nbsp;&lt;a href=&quot;&lt;a href="https://twitter.com/excelatksu&quot;&gt;@EXCELatKSU&lt;/a&gt;&lt;/div&gt;&lt;div"&gt;https://twitter.com/excelatksu&quot;&gt;@EXCELatKSU&lt;/a&gt;&lt;/div&gt;&lt;div&lt;/a&gt; class=&quot;cs_control CS_Element_Textblock&quot;&gt;&lt;img src=&quot;&lt;a href="http://i.imgur.com/9Qg9p44.jpg&quot;"&gt;http://i.imgur.com/9Qg9p44.jpg&quot;&lt;/a&gt; width=&quot;49&quot; height=&quot;49&quot;&gt;&amp;nbsp;&lt;a href=&quot;&lt;a href="http://instagram.com/excelatksu#&quot;&gt;@EXCELatKSU&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;"&gt;http://instagram.com/excelatksu#&quot;&gt;@EXCELatKSU&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/a&gt;&lt;/p&gt;
+</Body>
+    <Nid>58771</Nid>
+    <Vid>92481</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>Phone Goes Here</Phone>
+  </node>
+  <node>
+    <Title>KASADA</Title>
+    <Body>&lt;p&gt;&lt;p&gt;This is the KASADA home page&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>58756</Nid>
+    <Vid>72936</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>Phone Goes Here</Phone>
+  </node>
+  <node>
+    <Title>accessKSU</Title>
+    <Body>&lt;p&gt;&lt;h2&gt;Kent&amp;nbsp;State&amp;nbsp;University&amp;nbsp;Accessibility Liaison Welcomes You&lt;/h2&gt;&lt;p class=&quot;introduction&quot;&gt;Kent State University is committed to being a welcoming community&amp;nbsp;to&amp;nbsp;all.&amp;nbsp;Please let us know how we can be helpful.&lt;/p&gt;&lt;p&gt;&amp;nbsp;Kent State University&#039;s Accessibility Liaison would like to assist you with attending our campus or accessing an event. If you are a visitor or a student, faculty or staff member with an accessibility issue that is other than academic or employment related&amp;nbsp;and&amp;nbsp;need&amp;nbsp;an&amp;nbsp;accommodation,&amp;nbsp;please&amp;nbsp;contact my office&amp;nbsp;&lt;a href=&quot;&lt;a href="mailto:accessKSU@kent.edu&quot;&gt;accessKSU"&gt;mailto:accessKSU@kent.edu&quot;&gt;accessKSU&lt;/a&gt;@kent.edu&lt;/a&gt;&lt;/p&gt;&lt;p&gt;What&amp;nbsp;does&amp;nbsp;an&amp;nbsp;&quot;accommodation&quot; or accessibility request look like?&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;&amp;nbsp;American Sign Language (ASL)&amp;nbsp; interpreters&amp;nbsp;or&amp;nbsp;closed captioning&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;Videophones location&amp;nbsp;on campus&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;Materials for the visually impaired (enlarged font or Braille)&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;Accessible parking or curb cut out location information&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;Loaner Scooter and Wheelchair availability&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;Where to access buildings and elevator locations&lt;/div&gt;&lt;/li&gt;&lt;li&gt;First floor accessible restrooms&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;Location of universal restrooms, formerly known as gender neutral or family bathrooms&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;left&quot;&gt;Assistance with access strategies for your specific need&amp;nbsp;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h5&gt;My name is Jacqueline Gee and I look forward to working with you!&lt;/h5&gt;&lt;p&gt;If you have an accessibility concern please call (330) 672-8667 / Video Phone (330) 931-4441 or email me at &lt;a href=&quot;&lt;a href="mailto:accessksu@kent.edu&quot;&gt;accessksu"&gt;mailto:accessksu@kent.edu&quot;&gt;accessksu&lt;/a&gt;@kent.edu&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Registered students seeking academic accommodations call Student Accessibility Services (SAS) at (330) 672-3391 or fax (330) 672-3763 or email&amp;nbsp;&lt;a href=&quot;&lt;a href="mailto:SAS@kent.edu.&quot;&gt;SAS"&gt;mailto:SAS@kent.edu.&quot;&gt;SAS&lt;/a&gt;@kent.edu&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;University Faculty or Staff: for workplace accommodations call Amy Quillin, Ph.D. at (330) 672-8036 or email your request to&amp;nbsp;&lt;a href=&quot;&lt;a href="mailto:aquillin@kent.edu&quot;&gt;aquillin"&gt;mailto:aquillin@kent.edu&quot;&gt;aquillin&lt;/a&gt;@kent.edu&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>58671</Nid>
+    <Vid>72726</Vid>
+    <Featured-Photo>&lt;img src="https://cmsdev.kent.edu/sites/default/files/Feature-One_5.jpg" width="1500" height="1008" alt="" /&gt;, &lt;img src="https://cmsdev.kent.edu/sites/default/files/Feature-Three_4.jpg" width="1500" height="998" alt="" /&gt;, &lt;img src="https://cmsdev.kent.edu/sites/default/files/Feature-Two_1.jpg" width="1500" height="994" alt="" /&gt;</Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>(330) 672-8667 / (330) 931-4441 (Video Phone)</Phone>
+  </node>
+  <node>
+    <Title>Honors College</Title>
+    <Body>&lt;p&gt;&lt;p&gt;This page will be your training page. &amp;nbsp;It will become the YOUR SITE NAME home page. &amp;nbsp;You will want to access the&amp;nbsp;&lt;/p&gt;&lt;p class=&quot;panel&quot;&gt;&lt;a href=&quot;&lt;a href="https://docs.google.com/a/kent.edu/spreadsheet/ccc?key=0AkloIALFVtp7dHp3YUhyTklkSDZualFIOUI4aFQ4R1E&amp;amp;usp=drive_web#gid=0&quot;&gt;YOUR"&gt;https://docs.google.com/a/kent.edu/spreadsheet/ccc?key=0AkloIALFVtp7dHp3...&lt;/a&gt; SITE&lt;/a&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;(I will be using&amp;nbsp;Rec Services as a sample)&amp;nbsp;working document during training and migration. &amp;nbsp;Sample&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;&lt;a href="https://docs.google.com/a/kent.edu/spreadsheets/d/1iJJjQiMiWN_t-XOflBTPZbM7NlFd7K4bbKcXGtXfQRs/edit#gid=471697492&quot;"&gt;https://docs.google.com/a/kent.edu/spreadsheets/d/1iJJjQiMiWN_t-XOflBTPZ...&lt;/a&gt; class=&quot;action-link&quot;&gt;Migration Grid Template&lt;/a&gt;&lt;a href=&quot;&lt;a href="https://docs.google.com/a/kent.edu/spreadsheets/d/1ecVBv5CEPGNp1ZdDBH3QM9qgZVta0pBjESRWKq3NNYk/edit#gid=1517869795&quot;&gt;&lt;/a&gt;&lt;/p&gt;"&gt;https://docs.google.com/a/kent.edu/spreadsheets/d/1ecVBv5CEPGNp1ZdDBH3QM...&lt;/a&gt;&lt;/p&gt;
+</Body>
+    <Nid>58646</Nid>
+    <Vid>72701</Vid>
+    <Featured-Photo>&lt;img src="https://cmsdev.kent.edu/sites/default/files/DA36_0011.jpg" width="3192" height="2124" alt="Students walk to class in front of the Honors College and Stopher and Johnson Halls." title="Students walk to class in front of the Honors College and Stopher and Johnson Halls." /&gt;, &lt;img src="https://cmsdev.kent.edu/sites/default/files/DSCN2176%202.jpg" width="4896" height="3672" alt="Honors students travel across the globe, eager to explore new lands, learn about other cultures, and make friends with students from around the world." title="Honors students travel across the globe, eager to explore new lands, learn about other cultures, and make friends with students from around the world." /&gt;</Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-672-2312</Phone>
+  </node>
+  <node>
+    <Title>Undergraduate Studies</Title>
+    <Body>&lt;p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>19091</Nid>
+    <Vid>72271</Vid>
+    <Featured-Photo></Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>Phone Goes Here</Phone>
+  </node>
+  <node>
+    <Title>Plagiarism</Title>
+    <Body>&lt;p&gt;&lt;p class=&quot;introduction&quot;&gt;Academic honesty is the academy&#039;s most cherished value.&lt;/p&gt;&lt;p&gt;At this university, we seek to find truth in all its forms whether scientific, artistic, or political. &amp;nbsp;It is our expectation that Kent State students and faculty uphold the highest level of integrity, and take personal responsibility for the work they produce. &amp;nbsp;In a digital age where music, photos, and thoughts and ideas are shared freely across the globe, it is sometimes harder for individuals to determine where the line is, and how not to cross it. &amp;nbsp; However, the fundamental principles of intellectual property remain constant and pure—academic honesty is our highest responsibility. Simply put, Author Robert Fulghum said it well in his 1988 publication, All I Really Need To Know I Learned In Kindergarten, &quot;don&#039;t take things that aren&#039;t yours.&quot;&lt;/p&gt;&lt;p&gt;Kent State&#039;s Committee on Plagiarism&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+</Body>
+    <Nid>12021</Nid>
+    <Vid>109966</Vid>
+    <Featured-Photo>&lt;img src="https://cmsdev.kent.edu/sites/default/files/plagairism-classrom_1.jpg" width="1500" height="900" alt="photo of students in a classroom" title="Students studying in a classrom" /&gt;</Featured-Photo>
+    <Unit>Academics</Unit>
+    <Phone>330-244-3326</Phone>
+  </node>
+</nodes>

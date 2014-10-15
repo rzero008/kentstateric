@@ -1,0 +1,6 @@
+name = jQuery UI Panopoloy Components
+description = "Forces jQuery UI to load everywhere, always"
+
+dependencies[] = panopoly_widgets
+
+core = 7.x

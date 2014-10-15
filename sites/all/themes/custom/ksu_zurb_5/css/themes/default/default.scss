@@ -1,0 +1,153 @@
+@import '../../_ksu-colors';
+@import '../../_ksu-options';
+
+.panel-pane.pane-views-panes.pane-events-group-promoted-pane,
+.panel-pane.pane-views-panes.pane-events-group-similar-pane{
+    .views-row{
+        @include panelShadow;
+        margin-bottom:.5em;
+    }
+    .views-field.views-field-nothing{
+        float:left;
+        margin-right:.5em;
+        width:3em;
+        .calendar-date{
+            text-align:center;
+            color:white;
+            .month{
+                background-color:$dark-blue;
+                display:block;
+                padding:.5em;
+            }
+            .day{
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+                background-color:$cyan;
+                display:block;
+                padding:.5em;
+            }
+        }
+    }
+}
+
+.panel-pane.pane-block.pane-kent-state-blocks-group-primary-menu{
+    .pane-content{
+        >ul.menu{
+            margin:0;
+        }
+        ul.menu{
+            list-style:none;
+            li{
+                &.active-trail{
+                    a{
+                        &:before{
+                            background-color:$ksu-gold;
+                        }
+                    }
+                }
+            }
+            a{
+                float:left;
+                width:100%;
+                padding-top:.2rem;
+                padding-bottom:.2rem;
+                padding-right:.2rem;
+                padding-left:.7rem;
+                transition: all .2s ease-out;
+                position:relative;
+                border: 1px solid rgba(230, 230, 230, 0.5);
+                &:hover{
+                    background-color:#eee;
+                }
+                &:before{
+                    content: '';
+                    position:absolute;
+                    height:100%;
+                    width:5px;
+                    background-color:$dark-blue;
+                    left:0;
+                    top:0;
+                }
+                &.active{
+                    font-weight:bold;
+                }
+            }
+        }
+    }
+}
+
+.view-mode-landing_teaser{
+    .media-youtube-video{
+        iframe{
+            width:100%;
+        }
+    }
+}
+
+.header-top-container{
+    color: white;
+    background-image: -webkit-gradient(linear, 14% 14%, 14% 86%, color-stop(0, #002147), color-stop(0.21, #002751), color-stop(1, rgba(0, 60, 120, 0.96)));
+    background-image: -webkit-linear-gradient(-90deg, #002147 0%, #002751 21%, rgba(0, 60, 120, 0.96) 100%);
+    background-image: -webkit-linear-gradient(270deg, #002147 0%, #002751 21%, rgba(0, 60, 120, 0.96) 100%);
+    background-image: -moz-linear-gradient(180deg, #002147 0%, #002751 21%, rgba(0, 60, 120, 0.96) 100%);
+    background-image: linear-gradient(180deg, #002147 0%, #002751 21%, rgba(0, 60, 120, 0.96) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff002147,endColorstr=#f4003c78,GradientType=0)";
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff002147,endColorstr=#f4003c78,GradientType=0);
+}
+
+.group-header-region{    
+    background-color:$ksu-blue;
+}
+
+.megamenu-region{
+    border-top:1px solid white;
+    border-bottom:1px solid white;
+}
+
+.footer-top-region{
+    color:white;
+    background-color:$dark-blue;
+}
+
+.footer-middle-region{
+    color:white;
+    background-color:$dark-blue;
+    ul.menu{
+        li{
+            a{
+                color:white;
+                text-decoration:underline;
+            }
+            &:last-child{
+                a{
+                    &:after{
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer-bottom-region{
+    color:white;
+    background-color:$dark-blue;
+}
+
+.pane-og-menu{
+    .og_menu{
+        padding:.5em;
+        background-color:$dark-blue;
+        a{
+            color:white;
+        }
+        li{
+            padding-bottom:0;
+        }
+        &.list_icon{
+        }
+        &.inline_icon{        
+        }
+        &.html_grid{
+            
+        }
+    }
+}

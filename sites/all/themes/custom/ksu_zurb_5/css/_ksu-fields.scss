@@ -1,0 +1,145 @@
+//tabs animation
+.tabs-content{
+    margin-bottom:0;
+    position:relative;
+    &>.content {
+        position:absolute;
+        display:block;
+        transition: opacity .3s ease-out, visibility .3s ease-out, padding .3s ease-out;
+        opacity:0;
+        visibility:hidden;
+        max-height:0;
+        &.active{
+            position:relative;
+            opacity:1;
+            visibility:visible;
+            max-height:1400px;
+        }
+    }
+}
+
+//small fix for gmaps embeds
+.geolocation-map{
+    margin:0;
+    img, object, embed{
+        max-width:inherit;
+    }
+}
+
+//css for all fields
+.field{
+    @include panelShadow;
+    margin-bottom:.5em;
+    float:left;
+    width:100%;
+    .field-label {
+        font-weight: 500;
+    }
+}
+
+.node-type-article{
+    .pane-node-created{
+        .pane-content{
+            @include panelShadow;
+            margin-bottom:.5em;
+            &:before{
+                content: 'Posted: ';
+            }
+        }
+    }
+    .pane-node-updated{
+        .pane-content{
+            margin-bottom:.5em;
+            @include panelShadow;
+            &:before{
+                content: 'Updated: ';
+            }
+        }
+    }    
+}
+
+.field-name-field-article-display-author{
+    &:before{
+        content: 'Written By: ';
+    }
+}
+
+.field-name-field-article-media,
+.field-name-field-page-media{
+    .owl-item{
+        .file-image{
+            img{
+                max-height:500px;
+            }
+        }
+        .content{
+            text-align:center;
+            max-height:500px;
+            min-height:500px;
+            .media-youtube-video{
+                min-height:500px;
+                max-height:500px;
+                iframe{
+                    max-height:500px;
+                    min-height:500px;
+                    width:100%;
+                }
+            }
+            audio{
+                position:relative;
+                top:250px;
+            }
+        }
+    }
+}
+
+.field-type-image {
+    @include panelShadowClear;
+    img{
+        width:100%;
+    }
+    .image-info{
+        width:100%;
+        background-color:black;
+        color:white;
+        .image-title{
+            font-size:1.2em;
+            padding:.5em;
+        }
+        .image-alt{
+            font-size:.9em;
+            padding:.5em;
+        }
+    }
+}
+
+.field-name-field-tags{
+    background-color:#fff;
+    padding:.5em;
+    @include panelShadow;
+    margin-bottom:.5em;
+    .field-item{
+        display:inline-block;
+        .button{
+            margin-bottom:.5em;
+        }
+    }
+}
+
+
+.field-name-field-calls-to-action{
+    @include panelShadowClear;
+    ul{
+        margin-bottom:0em;
+        li{
+            &:last-child{
+                a{
+                    margin-bottom:0;
+                }
+            }
+            a{
+                margin-bottom: .3em;
+            }
+        }
+    }
+}

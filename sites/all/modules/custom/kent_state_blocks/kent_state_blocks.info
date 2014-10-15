@@ -1,0 +1,5 @@
+name = Kent State Blocks
+description = "Adds Campus and Departmental blocks"
+core = 7.x
+dependencies[] = kent_state_core
+dependencies[] = kent_state_og

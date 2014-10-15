@@ -1,0 +1,43 @@
+<?php
+/**
+ * @file
+ * Kent State Google Ananlytics Tracking Customizations
+ */
+
+/**
+ * Implements hook_google_analytics_et_api().
+ */
+function ksu_google_analytics_custom_google_analytics_et_api() {
+    return _ksu_google_analytics_custom_set_selectors_array();
+}
+
+/**
+ * Internal function returns the example selectors array.
+ */
+function _ksu_google_analytics_custom_set_selectors_array() {
+    $selectors = array();
+    $selectors = array(  
+        //Main Menu link clicks         
+        array(   
+            'event' => 'click',
+            'selector' => '.main-menu a',
+            'category' => 'Main Navigation',
+            'action' => '!currentPage',
+            'label' => '!text',
+            'value' => 0,
+            'noninteraction' => TRUE,
+        ),
+        //Group Menu Block link clicks
+        array(   
+            'event' => 'click',
+            'selector' => '.block-og-menu a', //[data-ksu-header-utility-links] a
+            'category' => 'Group Navigation',
+            'action' => '!currentPage',
+            'label' => '!text',
+            'value' => 0,
+            'noninteraction' => TRUE,
+        ),
+    );
+
+    return $selectors;
+}

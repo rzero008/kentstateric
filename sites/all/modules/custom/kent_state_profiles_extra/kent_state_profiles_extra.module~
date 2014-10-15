@@ -1,0 +1,39 @@
+<?php
+
+define('KENT_STATE_SOCIAL_MEDIA_EXTRA_PATH', drupal_get_path('module', 'kent_state_social_media_extra'));
+
+function kent_state_social_media_extra_install() {
+    // Get the weight of the module we want to compare against
+    $weight = db_select('system', 's')
+              ->fields('s', array('weight'))
+              ->condition('name', 'kent_state_og', '=')
+              ->execute()
+              ->fetchField();
+    // Set our module to a weight 1 heavier, so ours moves lower in execution order
+    db_update('system')
+              ->fields(array('weight' => $weight + 1))
+              ->condition('name', 'kent_state_social_media_extra', '=')
+              ->execute();    
+}
+
+/**
+ * Implements template_preprocess_block()
+ */
+function kent_state_social_media_extra_preprocess_block(&$vars){
+    if($vars['block']->delta === 'user_utility_bar'){
+        //load the og node create menu
+        if(!empty(kent_state_og\OGContext::$nid) && !empty(kent_state_og\OGContext::$type)){
+            foreach($vars['og_node_create_allowed'] as $key => $val){
+                $vars['og_node_create_allowed'][$key][] = 'social_media';
+            }
+            $og_node_create_links = og_node_create_links('node', 
+                                                         kent_state_og\OGContext::$nid, 
+                                                         'og_group_ref', 
+                                                         false, 
+                                                         $vars['og_node_create_allowed'][kent_state_og\OGContext::$type]
+                                                         );
+            
+            $vars['og_node_create_menu'] = $og_node_create_links['og_node_create_links'];
+        }
+    }
+}

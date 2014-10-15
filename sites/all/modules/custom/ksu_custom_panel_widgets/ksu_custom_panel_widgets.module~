@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * Implements hook_blocks()
+ */
+function ksu_custom_blocks_block_info() {
+    $blocks = array();
+    $blocks['ksu_group_featured_image_large'] = array(
+        'info' => t('Success story carousel. used in home page.'),
+    );
+    $blocks['ksu_group_featured_image_small'] = array(
+        'info' => t('Success story carousel. used in home page.'),
+    );
+    return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ksu_custom_blocks_block_view($delta = '') {
+    $block = array();
+    switch ($delta) {
+        case 'ksu_group_featured_image_large':
+            $block['subject'] = 'Large Featured Photo(s)';
+            $block['content'] = _kent_custom_blocks_render($delta);
+            break;
+    }
+    return $block;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ksu_custom_blocks_render($delta) {
+    $block = array();
+    switch ($delta) {
+        case 'ksu_group_featured_image_large':
+            $block['subject'] = 'Large Featured Photo(s)';
+            $block['content'] = _kent_custom_blocks_render($delta);
+            break;
+    }
+    return $block;
+}
+

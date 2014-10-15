@@ -1,0 +1,5 @@
+name = KSU Custom Display Modes
+description = "Adds additional display modes for some content types"
+core = 7.x
+
+# dependencies[] = 

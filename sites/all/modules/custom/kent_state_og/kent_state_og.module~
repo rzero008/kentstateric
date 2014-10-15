@@ -1,0 +1,25 @@
+<?php
+
+require_once('OGContext.php');
+
+/**
+ * Implements hook_views_plugins().
+ */
+function kent_state_og_views_plugins() {
+    return array(
+        'argument validator' => array(
+            'og_short_name' => array(
+                'title' => t('OG Group Short Name'),
+                'handler' => 'kent_state_og_plugin_argument_validate_group_short_name',
+                'path' => drupal_get_path('module', 'kent_state_og')  . '/includes/views/handlers',
+            ),
+        ),
+        'argument default' => array(
+            'og_context_short_name' => array(
+                'title' => t('Current OG group from context via short name'),
+                'handler' => 'kent_state_og_plugin_argument_default_group_context_short_name',
+                'parent' => 'views_plugin_argument_default',
+            ),
+        ),
+    );
+}

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Kent State Forms feature.
+ */
+
+include_once 'kent_state_forms.features.inc';

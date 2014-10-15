@@ -1,0 +1,43 @@
+(function ($) {
+    Drupal.behaviors.markdown = {
+        attach: function(context){
+            //run any other textarea behaviors first
+            if (Drupal.behaviors.textarea && Drupal.behaviors.textarea.attach) {
+                Drupal.behaviors.textarea.attach(context);
+            }
+
+            if(typeof Drupal.settings.markdown !== 'undefined'){
+                var inputs = Drupal.settings.markdown.inputs;
+                for(x in inputs){
+                    if(!$('#'+inputs[x].filter_id).hasClass('markdown-processed')){
+                        $('#'+inputs[x].filter_id).addClass('markdown-processed');
+                        $('#'+inputs[x].filter_id).attr('data-markdown', '#'+inputs[x].textarea_id);
+                        $('#'+inputs[x].textarea_id).addClass('markdown-processed');
+                        $('#'+inputs[x].summary_id).addClass('markdown-processed');
+                    }
+                }
+                $('.markdown-processed').each(function(){
+                    if($(this).prop("tagName") === 'SELECT'){
+                        $(this).unbind('change.markdown').bind('change.markdown', function(){
+                            var textarea_id = $(this).attr('data-markdown');
+                            if($(this).val() === 'markdown'){
+                                $(textarea_id).addClass('markdown-active');
+                            }
+                            else{
+                                $(textarea_id).removeClass('markdown-active');
+                            }
+                        });
+                    }
+                });
+            }
+        },
+        detach: function(context, settings, trigger){
+            $('.markdown-processed').each(function(){
+                if($(this).prop("tagName") === 'SELECT'){
+                    $(this).unbind('change.markdown');
+                }
+                $(this).removeClass('markdown-processed');
+            });
+        }
+    };
+})(jQuery);

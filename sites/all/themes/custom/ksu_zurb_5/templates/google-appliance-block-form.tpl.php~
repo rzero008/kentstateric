@@ -1,0 +1,42 @@
+<?php
+// $Id$
+/**
+ * @file
+ *    default theme implementation for the search block form
+ * variables of interest
+ * - variables['form'] : the form elements array, pre-render
+ * - variables['block_search_form']['hidden'] : hidden form elements collapsed + rendered 
+ * - variables['block_serach_form'] : form elements rendered and keyed by original form keys
+ * - variables['block_search_form_complete'] : the entire form collapsed and rendered
+ *
+ * @see template_preprocess_google_appliance_block_form()
+ */
+//dsm($variables);
+//echo '<pre>';var_dump($variables['block_search_form']);exit;
+//var_dump($variables['form']['actions']['submit']);
+/*
+$btn_type = $variables['form']['actions']['submit']['#type'];
+$btn_value= $variables['form']['actions']['submit']['#value'];
+$btn_name = $variables['form']['actions']['submit']['#name'];
+$btn_id = $variables['form']['actions']['submit']['#id'];
+$btn_classes = "button postfix expand form-submit";
+$btn_contents = '<i class="fa fa-search fa-2x"></i>';
+$button = "<button class=\"{$btn_classes}\" type=\"{$btn_type}\" value=\"{$btn_value}\" name=\"{$btn_name}\" id=\"{$btn_id}\">{$btn_contents}</button>";
+ */
+
+?>
+
+<form method="post" action="<?php echo $variables['form']['#action']; ?>" id="<?php echo $variables['form']['#id'] ?>" accept-charset="UTF-8">
+  <div class="row collapse">
+    <div class="small-10 medium-10 large-10 columns">
+      <?php echo $variables['block_search_form']['search_keys']; ?>
+      <?php echo $variables['block_search_form']['hidden']; ?>
+    </div>
+    <div class="small-2 medium-2 large-2 columns">
+      <button class="button postfix">Go</button>
+    </div>
+  </div>
+  <div class="row" data-ksu-search-utilities>
+    <a href="/index">A-Z index</a><span>|</span><a href="http://kentstate.askadmissions.net/ask.aspx?ref=ksuheader">Ask KSU</a>
+  </div>
+</form>

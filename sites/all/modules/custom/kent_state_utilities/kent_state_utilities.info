@@ -1,0 +1,3 @@
+name = Kent State Utilities
+description = "Contains additional general functionality"
+core = 7.x

@@ -1,0 +1,23 @@
+<?php
+
+/** 
+ * Implementation of hook_entity_info_alter()
+ */
+function ksu_custom_panel_widgets_entity_info_alter(&$entity_info) {
+    // Quick links
+    /*
+    $entity_info['fieldable_panels_pane']['bundles']['jump_link_bar'] = array(
+        'label' => t('Add Jump Links'),
+        'pane category' => t('Custom'),
+        'pane top level' => TRUE,
+        'pane icon' => drupal_get_path('module', 'ksu_custom_panel_widgets') . '/images/icon_jump_links.png',
+        'admin' => array(
+            'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+            'bundle argument' => 4,
+            'real path' => 'admin/structure/fieldable-panels-panes/manage/jump-links',
+            'access arguments' => array('administer fieldable panels panes'),
+        ),
+    );
+    */
+}
+

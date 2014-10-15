@@ -1,0 +1,6 @@
+name = Kent State Views
+description = "Contains additional Views functionality"
+core = 7.x
+
+files[] = includes/views/handlers/kent_state_views_plugin_argument_validate_group_short_name.inc
+files[] = includes/views/handlers/kent_state_views_plugin_argument_default_group_context_short_name.inc

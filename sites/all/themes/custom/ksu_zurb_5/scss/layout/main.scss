@@ -1,0 +1,76 @@
+// Non-modular or client styles for the .l-content region.
+
+   
+/* ==========================================================================
+   Main Styles
+   ========================================================================== */
+   
+
+/* ------ Customize Element Styles Under .navMobile ------- */
+
+.navMobile.top-bar.expanded .toggle-topbar a span{
+-webkit-box-shadow: none !important;
+box-shadow: none !important;
+}
+
+
+.top-bar h1, .top-bar h5{
+background-color:#0da2dd !important;
+}
+
+.navMobile .utilityBG{
+background-color:#002147 !important;
+}
+
+.navMobile .utilityBG .content{
+float: left;
+height: 1px;
+}
+
+.navMobile #block-kent-state-blocks-site-utility-menu .f-dropdown{
+top:68px !important;
+background-color:transparent !important;
+border:0px !important;
+}
+
+.navMobile{display:none;}   
+
+
+
+/* -------------Main content styles----------- */
+.breadCrumbPart .breadcrumbs {
+display: block;
+padding: 0.5625rem 0.875rem 0.5625rem;
+overflow: hidden;
+margin-left: 0;
+list-style: none;
+border-style: none !important;
+border-width: 0 !important;
+background-color: transparent !important;
+border-color: #dcdcdc;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+float: right;
+font-size:12px;
+text-transform:uppercase;
+}
+.breadCrumbPart ul.breadcrumbs  li a{
+color:#c7c2bc !important;
+}
+
+.breadCrumbPart .breadcrumbs > *:before {
+content: "/";
+color: #111111;
+}
+.breadcrumbs > *:first-child:before {
+content: " ";
+}
+   
+   
+   
+/* ------- Media Queries Condition Here------- */   
+   
+@media only screen and (max-width: 1024px){
+.navMobile{display:block;}
+section.researchSponsoredProg,#google-appliance-block-form{display:none;}
+}

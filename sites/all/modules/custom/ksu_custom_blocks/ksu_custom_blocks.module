@@ -1,0 +1,274 @@
+<?php
+
+define('KSU_CUSTOM_BLOCKS_PATH', drupal_get_path('module', 'ksu_custom_blocks'));
+require_once('OGContext.php');
+
+function ksu_custom_blocks_views_pre_view(&$view, &$display_id, &$args){    
+
+    //OG COURSES entity reference tweaks. use parent group ID for sourcing course requirements
+    if($view->name === 'og_courses' && $display_id === 'entityreference_1'){
+        if(preg_match('/^node\/.*?\/edit$/', current_path()) === 1){
+            ksu_custom_blocks\OGContext::init();
+            $args[0] = ksu_custom_blocks\OGContext::$parent->nid;
+        }
+        else{
+            ksu_custom_blocks\OGContext::init();
+            $args[0] = ksu_custom_blocks\OGContext::$nid;
+        }
+    }
+
+    //OG News Page tweaks. Pull in the OG info for surrounding blocks. init OGContext off the first arg (gid)
+    if($view->name === 'og_news_articles' && $display_id === 'page_1'){
+        if(!empty($args[0])){
+            ksu_custom_blocks\OGContext::init($args[0]);
+        }
+    }
+
+    //tweaks for similar news articles view on news pages. Uses the first tag as the argument
+    if($view->name === 'og_news_articles' && $display_id === 'panel_pane_2'){
+        if(!empty($args[1])){
+            $boom = explode(', ', $args[1]);
+            $args[1] = $boom[0];
+        }
+    }
+
+    //OG Events Page tweaks. Pull in the OG info for surrounding blocks. init OGContext off the first arg (gid)
+    if($view->name === 'og_events' && $display_id === 'page_1'){
+        if(!empty($args[0])){
+            ksu_custom_blocks\OGContext::init($args[0]);
+        }
+    }
+}
+
+
+function ksu_custom_blocks_preprocess_html(&$variables){
+    if(!empty(ksu_custom_blocks\OGContext::$theme)){
+        $variables['classes_array'][] = 'group-theme-'.str_replace(' ', '-', strtolower(ksu_custom_blocks\OGContext::$theme->name));
+    }
+    if(!empty(ksu_custom_blocks\OGContext::$campus)){
+        $variables['classes_array'][] = 'group-campus-'.str_replace(' ', '-', strtolower(ksu_custom_blocks\OGContext::$campus->name));
+    }
+}
+
+function _ksu_custom_blocks_get_og_create_links(){
+    $allowed = array(
+        'academic_group' => array('academic_group', 'administrative_group', 'blog', 'page', 'course', 'event', 'faq', 'featured_media', 'infographic', 'location', 'news_article', 'profile', 'social_media', 'student_organization'),
+        'administrative_group' => array('academic_group', 'administrative_group', 'blog', 'page', 'course', 'event', 'faq', 'featured_media', 'infographic', 'location', 'news_article', 'profile', 'social_media', 'student_organization'),
+        'campus_group' => array('academic_group', 'administrative_group', 'blog', 'page', 'course', 'event', 'faq', 'featured_media', 'infographic', 'location', 'news_article', 'profile', 'social_media', 'student_organization'),
+        'course' => array('course_activity', 'blog', 'page', 'event', 'faq', 'featured_media', 'infographic', 'location', 'news_article', 'profile', 'social_media', 'success_story'),
+        'einside' => array('blog', 'page', 'course', 'event', 'einside', 'faq', 'featured_media', 'infographic', 'location', 'news_article', 'profile', 'social_media', 'success_story'),
+        'student_organization' => array('blog', 'page', 'event', 'faq', 'featured_media', 'infographic', 'location', 'news_article', 'profile', 'social_media', 'success_story'),
+    );
+    $og_node_create_links = og_node_create_links('node', ksu_custom_blocks\OGContext::$nid, 'og_group_ref', false, $allowed[ksu_custom_blocks\OGContext::$type]);
+    return $og_node_create_links;
+}
+
+/**
+ * Implements hook_blocks()
+ */
+function ksu_custom_blocks_block_info() {
+    $blocks = array();
+    $blocks['page_social_media_share'] = array(
+        'info' => t('Page Social Media Sharing'),
+    );
+    $blocks['ksu_locations'] = array(
+        'info' => t('Kent State University Locations Links Block'),
+    );
+    $blocks['feature_interaction'] = array(
+        'info' => t('Featured Interaction'),
+    );
+    $blocks['utility_bar'] = array(
+        'info' => t('Non Admin Utility Bar Block'),
+    );
+    $blocks['campus_header'] = array(
+        'info' => t('Campus Info Header Block'),
+    );
+    $blocks['department_header'] = array(
+        'info' => t('Department Info Header Block'),
+    );
+    $blocks['og_megamenu'] = array(
+        'info' => t('OG Megamenu Block'),
+    );
+    $blocks['og_megafooter'] = array(
+        'info' => t('OG Megafooter Block'),
+    );
+    $blocks['campus_footer'] = array(
+        'info' => t('Campus Info Footer Block'),
+    );
+    $blocks['og_sidenav'] = array(
+        'info' => t('OG Sidenav Block'),
+    );
+    return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ksu_custom_blocks_block_view($delta = '') {
+    ksu_custom_blocks\OGContext::init();
+    $block = array();
+    switch ($delta) {
+        case 'page_social_media_share':
+            $block['subject'] = 'Page Social Media Sharing';
+            $block['content'] = 'Page Social Media Sharing Placeholder';
+            $block['variables'] = array();
+            break;
+        case 'ksu_locations':
+            $block['subject'] = 'Kent State Locations';
+            $block['content'] = 'Kent State Locations Placeholder';
+            break;
+        case 'feature_interaction':
+            $block['subject'] = 'Featured Interaction for page conversion';
+            $block['content'] = 'Featured Interaction Placeholder';
+            break;
+        case 'utility_bar':
+            $block['subject'] = 'Non Admin Utility Bar';
+            $block['content'] = 'Non Admin Utility Bar Placeholder';
+            $block['variables'] = array();
+            $block['variables']['nid'] = 'not a node';
+            $block['variables']['og_user_roles'] = array();
+            $block['variables']['og_node_create_links'] = array();
+            $nodeid = null;
+            if (arg(0) == 'node' && is_numeric(arg(1))) $nodeid = arg(1);            
+            if($nodeid){
+                $block['variables']['nid'] = $nodeid;
+            }
+            if(ksu_custom_blocks\OGContext::$nid){
+                _ksu_custom_blocks_get_og_create_links();
+                $block['variables']['og_user_roles'] = og_get_user_roles('node', ksu_custom_blocks\OGContext::$nid);
+                $block['variables']['og_node_create_links'] = _ksu_custom_blocks_get_og_create_links();
+            }
+            break;
+        case 'campus_header':
+            $block['subject'] = 'Campus Header information';
+            $block['content'] = 'Campus Header Placeholder';
+            $block['variables'] = array();
+            $block['variables']['campus'] = ksu_custom_blocks\OGContext::$campus;
+            break;
+        case 'department_header':
+            $block['subject'] = 'Department Header information';
+            $block['content'] = 'Department Header Placeholder';
+            $block['variables'] = array();
+            $block['variables']['group_type'] = ksu_custom_blocks\OGContext::$type;
+            $block['variables']['group_name'] = ksu_custom_blocks\OGContext::$name;
+            $block['variables']['group_nid'] = ksu_custom_blocks\OGContext::$nid;
+            $block['variables']['group_address'] = ksu_custom_blocks\OGContext::$contact['address'];
+            $block['variables']['group_phone'] = ksu_custom_blocks\OGContext::$contact['phone'];
+            $block['variables']['group_email'] = ksu_custom_blocks\OGContext::$contact['email'];
+            $block['variables']['group_parent_type'] = '';
+            $block['variables']['group_parent_name'] = '';
+            $block['variables']['group_parent_nid'] = '';
+            if(ksu_custom_blocks\OGContext::$parent){
+                $block['variables']['group_parent_type'] = ksu_custom_blocks\OGContext::$parent->type;
+                $block['variables']['group_parent_name'] = ksu_custom_blocks\OGContext::$parent->name;
+                $block['variables']['group_parent_nid'] = ksu_custom_blocks\OGContext::$parent->nid;
+            }
+            break;
+        case 'og_megamenu':
+            drupal_add_js(KSU_CUSTOM_BLOCKS_PATH.'/ksu_custom_blocks.js', array('type'=>'file', 'scope'=>'footer'));
+            drupal_add_css(KSU_CUSTOM_BLOCKS_PATH.'/ksu_custom_blocks.css', array('type'=>'file'));
+            
+            $block['subject'] = 'OG Megamenu Block';
+            $block['content'] = 'OG Megamenu Block Placeholder';
+            $block['variables'] = array();
+            $block['variables']['menu'] = ksu_custom_blocks\OGContext::$primaryMenu;
+            break;
+        
+        case 'og_megafooter':            
+            $block['subject'] = 'OG Megafooter Block';
+            $block['content'] = 'OG Megafooter Block Placeholder';
+            $block['variables'] = array();
+            $block['variables']['menu'] = ksu_custom_blocks\OGContext::$primaryMenu;
+            break;
+        
+        case 'campus_footer':
+            $block['subject'] = 'Campus footer information';
+            $block['content'] = 'Campus Footer Placeholder';
+            $block['variables'] = array();
+            $block['variables']['campus'] = ksu_custom_blocks\OGContext::$campus;
+            
+            $menu = menu_tree_output(menu_tree_all_data('menu-footer-menu'));
+            $block['variables']['menu'] = $menu;
+            
+            $block['variables']['social_media'] = null;
+            $view_arg = !empty($block['variables']['campus']->field_campus_group_ref) 
+                              ? array($block['variables']['campus']->field_campus_group_ref[LANGUAGE_NONE][0]['target_id'])
+                                     : array();
+
+            if(!empty(ksu_custom_blocks\OGContext::$campus->field_campus_group_ref)){
+                $view = views_get_view('og_social_media');
+                $view->set_display('panel_pane_og_context_icon_only');
+                $view->set_arguments(array(ksu_custom_blocks\OGContext::$campus->field_campus_group_ref[LANGUAGE_NONE][0]['target_id']));
+                $view->pre_execute();
+                $view->execute();
+                $block['variables']['social_media'] = $view->render();
+            }           
+            
+            break;
+
+        case 'og_sidenav':            
+            $block['subject'] = 'OG Sidenav Block';
+            $menu = menu_tree_output(menu_tree_page_data(ksu_custom_blocks\OGContext::$primaryMenuName, NULL, FALSE));
+            $block['content'] = render($menu);
+            break;
+    }
+    return $block;
+}
+
+/**
+ * Implements ctools_block_info().
+ */
+function ksu_custom_blocks_ctools_block_info($module, $delta, &$info) {
+    if($delta === 'og_sidenav'){
+        $info['category'] = t('Group Context Panes');
+    }
+    else if($delta === 'page_social_media_share'){
+        $info['category'] = t('Page Context Social');
+    }
+    else if($delta === 'ksu_locations'){
+        $info['category'] = t('KSU Custom Panes');
+    }
+}
+
+/**
+ * Implements hook_preprocess_panels_pane().
+ */
+function ksu_custom_blocks_preprocess_panels_pane(&$vars) {
+    if($vars['pane']->subtype === 'ksu_custom_blocks-ksu_locations'){
+        $vars['content_data'] = _ksu_custom_blocks_get_ksu_locations();
+    }
+}
+
+function _ksu_custom_blocks_get_ksu_locations(){
+    $variables = array();
+    $variables['menu'] = menu_tree_output(menu_tree_all_data('menu-campus-locations-menu'));
+    return $variables;
+}
+
+/**
+ * Implements hook_theme_registry_alter()
+ */
+function ksu_custom_blocks_theme_registry_alter(&$theme_registry) {
+    $theme_registry_copy = $theme_registry;
+    _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'ksu_custom_blocks', KSU_CUSTOM_BLOCKS_PATH);
+    $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+    // A list of templates the module will provide templates for
+    $hooks = array('node');
+    foreach ($hooks as $h) {
+        // Add the key 'theme paths' if it doesn't exist in this theme's registry
+        if (!isset($theme_registry[$h]['theme paths'])) {
+            $theme_registry[$h]['theme paths'] = array();
+        }
+        //Shift this module's directory to the top of the theme path list
+        if(is_array($theme_registry[$h]['theme paths'])) {
+            $first_element = array_shift($theme_registry[$h]['theme paths']);
+            if ($first_element) {
+                array_unshift($theme_registry[$h]['theme paths'], $first_element, KSU_CUSTOM_BLOCKS_PATH);
+            } else {
+                array_unshift($theme_registry[$h]['theme paths'], KSU_CUSTOM_BLOCKS_PATH);
+            }
+        }
+    }
+}
+
+?>

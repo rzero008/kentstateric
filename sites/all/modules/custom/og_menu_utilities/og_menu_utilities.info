@@ -1,0 +1,16 @@
+name = OG Menu Utilities
+description = "Adds various additional utility fields to Organic Groups menus, and provides blocks for showing them."
+
+category = Kent Custom
+
+dependencies[] = menu
+dependencies[] = menu_token
+dependencies[] = media
+dependencies[] = og (2.x)
+dependencies[] = og_ui
+dependencies[] = og_context
+dependencies[] = og_menu
+
+package = "Organic groups"
+
+core = 7.x

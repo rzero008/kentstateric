@@ -1,0 +1,10 @@
+(function ($) {
+    Drupal.behaviors.kent_state_panels = {
+        attach: function (context, settings) {
+            $('.pane-featured-media-slideshow .field-name-field-featured-medias .field-items').addClass('owl-carousel');
+            $('.owl-carousel').owlCarousel({
+                items: 1,
+            });
+        }
+    };
+})(jQuery);

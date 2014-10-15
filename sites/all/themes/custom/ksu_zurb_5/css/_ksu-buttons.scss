@@ -1,0 +1,46 @@
+.button{
+    background-color:$cyan;
+    &:hover{
+        background-color:darken($cyan, 10%);
+    }
+    &.cta{
+        @include panelShadow;
+        padding-top:0;
+        padding-bottom:0;
+        padding-left: .5em !important;
+        padding-right: 3.5em;
+        line-height:3em;
+        text-align:left;
+        color:white;
+        text-transform: uppercase;
+        border:1px solid $dark-blue;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        @media (max-width: $medium-break) {
+            font-size:.9em;
+        }
+        @media (max-width: $small-break) {
+            font-size:.9em;
+        }
+        &:after{
+            content: "\f0da";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-size:2.3em;
+            font-weight: normal;
+            position: absolute;
+            right: 0;
+            top:0;
+            height:100%;
+            background-color: $dark-blue;
+            padding-left:.5em;
+            padding-right:.5em;
+            color:$ksu-gold;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        &:hover{
+            @include panelShadowHover;
+            border:1px solid $dark-blue;
+        }
+    }
+}

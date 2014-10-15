@@ -1,0 +1,43 @@
+.block-ksu-custom-blocks-og-megamenu .content{
+  
+}
+
+.megamenu-wrapper{
+  width:1024px;
+  margin:0 auto;
+  position:relative;
+}
+
+.megamenu-group-container{
+  display:block;
+  vertical-align:top;
+}
+
+.megamenu-group-container a.megamenu-trigger{
+  line-height:2rem;
+  float:left;
+  padding-left:.5rem;
+  padding-right:.5rem;
+}
+
+.megamenu-group-container.active a.megamenu-trigger{
+  color:green;
+}
+
+.megamenu-content-wrapper{
+  position:absolute;
+  left:0;
+  top:2rem;
+  width:100%;
+  background-color:white;
+  color:black;
+  z-index:1;
+  visibility:hidden;
+  opacity:0;
+  transition:opacity .5s ease-out, visibility .5s ease-out;
+}
+
+.megamenu-group-container.active .megamenu-content-wrapper{
+  opacity:1;
+  visibility:visible;
+}

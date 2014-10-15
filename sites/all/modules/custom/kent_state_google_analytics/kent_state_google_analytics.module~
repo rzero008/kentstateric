@@ -1,0 +1,73 @@
+<?php
+/**
+ * @file
+ * Kent State Google Ananlytics Tracking Customizations
+ */
+
+/**
+ * Implements hook_google_analytics_et_api().
+ */
+function kent_state_google_analytics_custom_google_analytics_et_api() {
+    return _kent_state_google_analytics_custom_set_selectors_array();
+}
+
+/**
+ * Internal function returns the example selectors array.
+ */
+function _kent_state_google_analytics_custom_set_selectors_array() {
+    $selectors = array();
+    $selectors = array(  
+        //Main Menu dropdown link clicks         
+        array(   
+            'event' => 'click',
+            'selector' => '.megamenu-wrapper .megamenu-container a',
+            'category' => 'Megamenu Container Links',
+            'action' => '!currentPage',
+            'label' => '!text',
+            'value' => 0,
+            'noninteraction' => TRUE,
+        ),
+        //Main Menu title link clicks
+        array(   
+            'event' => 'click',
+            'selector' => 'a.megamenu-title',
+            'category' => 'Megamenu Title Links',
+            'action' => '!currentPage',
+            'label' => '!text',
+            'value' => 0,
+            'noninteraction' => TRUE,
+        ),
+        //Campus Locations Links
+        array(   
+            'event' => 'click',
+            'selector' => '.pane-kent-state-blocks-campus-locations a',
+            'category' => 'Campus Location Links',
+            'action' => '!currentPage',
+            'label' => '!text',
+            'value' => 0,
+            'noninteraction' => TRUE,
+        ),
+        //OG Menu pane clicks
+        array(   
+            'event' => 'click',
+            'selector' => '.pane-og-menu a',
+            'category' => 'OG Menu Pane Links',
+            'action' => '!currentPage',
+            'label' => '!text',
+            'value' => 0,
+            'noninteraction' => TRUE,
+        ),
+        //Promoted News Clicks
+        array(   
+            'event' => 'click',
+            'selector' => '.pane-articles-group-promoted-pane a',
+            'category' => 'Promoted News Links',
+            'action' => '!currentPage',
+            'label' => '!text',
+            'value' => 0,
+            'noninteraction' => TRUE,
+        ),
+    );
+
+    return $selectors;
+}

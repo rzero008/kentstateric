@@ -1,0 +1,59 @@
+/*
+Syntax error: File to import not found or unreadable: bourbon.
+              Load paths:
+                /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss
+                /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss
+        on line 42 of /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss/STARTER.scss
+
+37: // Comment out this import if you don't want to use normalize.
+38: @import "vendor/foundation/normalize";
+39: // Comment out this import below if you are customizing you imports below.
+40: @import "vendor/foundation/foundation";
+41: // Comment out this import if you don't want to use Bourbon, a replacement for Compass mixins.
+42: @import "bourbon";
+43: 
+44: 
+45: // Import our mixins early so they can be used by other partials.
+46: // Optional.
+47: //@import "base/mixins";
+
+Backtrace:
+/var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss/STARTER.scss:42
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:45:in `import'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:28:in `imported_file'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/import_node.rb:37:in `css_import?'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `map'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/tree/root_node.rb:20:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/engine.rb:315:in `_render'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/engine.rb:262:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:201:in `each'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/plugin.rb:81:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:443:in `watch_or_update'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:326:in `process_result'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:41:in `parse'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/lib/sass/exec.rb:21:in `parse!'
+/var/lib/gems/1.9.1/gems/sass-3.2.13/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: bourbon.\A               Load paths:\A                 /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss\A                 /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss\A         on line 42 of /var/www/ksu-acquia.kent.edu/docroot/sites/all/themes/custom/ksu_zurb_5/scss/STARTER.scss\A \A 37: // Comment out this import if you don't want to use normalize.\A 38: @import \"vendor/foundation/normalize\";\A 39: // Comment out this import below if you are customizing you imports below.\A 40: @import \"vendor/foundation/foundation\";\A 41: // Comment out this import if you don't want to use Bourbon, a replacement for Compass mixins.\A 42: @import \"bourbon\";\A 43: \A 44: \A 45: // Import our mixins early so they can be used by other partials.\A 46: // Optional.\A 47: //@import \"base/mixins\";"; }

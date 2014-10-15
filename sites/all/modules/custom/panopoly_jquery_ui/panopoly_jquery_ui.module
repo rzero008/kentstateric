@@ -1,0 +1,21 @@
+<?php
+
+//force jquery UI to always always always load.
+function panopoly_jquery_ui_init(){
+    drupal_add_library('system', 'ui', true);
+    drupal_add_library('system', 'ui.tabs', true);
+    drupal_add_css('.media-item{width:auto;}', array('type' => 'inline'));
+}
+
+/*
+function panopoly_jquery_ui_theme_registry_alter(&$theme_registry) {
+    echo '<pre>';
+    $theme_registry['filedepot_main_page']['template'] = 'sites';
+    var_dump($theme_registry);
+    exit;
+
+    if (!empty($theme_registry['image']['function'])) {
+	$theme_registry['image']['function'] = 'MYMODULE_theme_image';
+    }
+}
+*/

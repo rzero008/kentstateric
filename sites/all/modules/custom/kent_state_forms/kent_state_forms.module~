@@ -1,0 +1,400 @@
+<?php
+
+require_once('OGContext.php');
+define('KENT_STATE_OG_PATH', drupal_get_path('module', 'kent_state_og'));
+
+//does og context init based on where we are in ctools.
+function kent_state_og_ctools_render_alter(&$info, &$page, &$context){
+    if(!empty($context['subtask']['name'])){
+        if($context['subtask']['name'] === 'group_dashboard'){
+            foreach($context['contexts'] as $row){
+                if($row->plugin === 'entity:node'){
+                    kent_state_og\OGContext::init($row->argument);
+                    break;
+                }
+            }
+        }
+        else{
+            kent_state_og\OGContext::init();
+        }
+    }
+    else{
+        kent_state_og\OGContext::init();
+    }
+}
+
+function kent_state_og_preprocess_page(&$vars){
+    drupal_add_js(array('kentStateOg' => array('nid' => kent_state_og\OGContext::$nid)), 'setting');    
+
+    //init OGContext for those pages that arent governed by the ctools render alter
+    //Now thats an easy way to include stylesheets!
+    if(!empty(kent_state_og\OGContext::$theme->field_theme_css_path)){
+        drupal_add_css(kent_state_og\OGContext::$theme->field_theme_css_path[LANGUAGE_NONE][0]['value'], array('type'=>'file', 'weight'=>100, 'group'=>CSS_THEME));
+    }
+}
+
+/**
+ * Implements hook_menu_alter()
+ * This is for integration with the user_alert module
+ */
+function kent_state_og_menu_alter(&$items) {
+    $items['js/user-alert/get-message/%'] = array(
+	'page callback' => 'kent_state_og_display_alert',
+	'delivery callback' => 'ajax_deliver',
+	'access arguments' => array('access content'),
+        'page arguments' => array(3),
+	'type' => MENU_CALLBACK,
+    );
+}
+
+/**
+ * Modified display alert function for getting campuses working with OG
+ * This is for integration with the user_alert module
+ */
+function kent_state_og_display_alert($arg=null) {
+    kent_state_og\OGContext::init($arg);
+    if (module_exists('translation')) {
+        global $language;
+        $language = $language->language;
+    } else {
+        $language = LANGUAGE_NONE;
+    }
+    
+    $output = '';
+    $result = db_query("SELECT n.nid FROM {node} n WHERE type = :type AND status = :status AND language = :language AND n.nid NOT IN (SELECT ua.nid FROM {user_alert} ua WHERE ua.nid = n.nid AND ua.uuid = :cookie) ORDER BY nid DESC", array(':type' => 'user_alert', ':status' => NODE_PUBLISHED,  ':language' => $language, ':cookie' => $_COOKIE['UUID']));
+    
+    foreach ($result as $record) {
+	$alert = node_load($record->nid);
+        $campus = field_get_items('node', $alert, 'field_user_alert_campus', $langcode = NULL);
+	if (node_access('view', $alert) && isset($_COOKIE['UUID'])) {
+	    $output .= theme('user_alert', array('node' => $alert));
+	}
+        if(!empty($campus)){
+            if(kent_state_og\OGContext::$campus->tid !== $campus[0]['tid']){
+                $output = '';
+            }
+        }
+    }
+    
+    return $output;    
+}
+
+/**
+ * Implements hook_preprocess()
+ * This is for integration with the user_alert module
+ */
+function kent_state_og_preprocess_user_alert(&$vars) {
+    $node = $vars['node'];
+    //var_dump(kent_state_og\OGContext::$nid);
+    //var_dump($node->nid);exit;
+    $vars['alert_label'] = variable_get('user_alert_label', 'User Alert');
+    $vars['nid'] = $vars['node']->nid;
+    $vars['body'] = $vars['node']->body[$vars['node']->language][0]['value'];
+    $vars['is_closeable'] = user_alert_cookie_is_valid();
+}
+
+/**
+ * Implements hook_js_alter()
+ * This is for integration with the user_alert module
+ */
+function kent_state_og_js_alter(&$js) {
+    if(!empty($js['sites/all/modules/contrib/user_alert/js/user-alert.js'])){
+        unset($js['sites/all/modules/contrib/user_alert/js/user-alert.js']);
+        drupal_add_js(KENT_STATE_OG_PATH.'/user_alert.js');
+    }
+}
+
+/**
+ * Implements hook_date_formats().
+ */
+function kent_state_og_date_formats() {
+    return array(
+        // Creates a new format for a new, custom format type.
+        array(
+            'type' => 'kent_state_og_month_short_name',
+            'format' => 'M',
+            'locales' => array(),
+        ),
+        array(
+            'type' => 'kent_state_og_day_date',
+            'format' => 'd',
+            'locales' => array(),
+        ),
+    );
+}
+
+/**
+ * Implements hook_date_format_types().
+ */
+function kent_state_og_date_format_types() {
+  return array(
+    'kent_state_og_month_short_name' => t('Month Short Name'),
+    'kent_state_og_day_date' => t('Day Date'),
+  );
+}
+
+/**
+ * Implements hook_block_info()
+ */
+function kent_state_og_block_info() {
+    $blocks = array();
+    $blocks['user_utility_bar'] = array(
+        'info' => t('User Utility Bar'),
+    );
+    return $blocks;
+}
+
+/**
+ * Implements hook_block_view()
+ */
+function kent_state_og_block_view($delta = '') {
+    if($delta === 'user_utility_bar'){
+        $block['subject'] = 'User Utility Bar';
+        $block['content'] = 'Placeholder';
+    }
+    return $block;
+}
+
+/**
+ * Implements template_preprocess_block()
+ */
+function kent_state_og_preprocess_block(&$vars){
+    if($vars['block']->delta === 'user_utility_bar'){
+        global $user;
+        //user utility bar preprocessing
+        drupal_add_css(KENT_STATE_OG_PATH.'/utility.css', array('type'=>'file'));        
+        
+        
+        
+        $node_allowed = array();
+        $type_allowed = array();
+        //do type level restrictions
+
+        foreach(field_info_instances('node') as $name=>$data){
+            if(isset($data['og_group_ref'])){
+
+                //do type level restrictions
+                $valid_group_types = variable_get('kent_state_og_allowed_group_type_content_types_'.$name, NULL);
+                if(!empty($valid_group_types)){
+                    
+                    if(isset($valid_group_types[kent_state_og\OGContext::$type])){
+                        $type_allowed[] = $name;
+                    }
+                }
+                else{
+                    $type_allowed[] = $name;
+                }
+                
+                //do node level restrictions, these will override type level
+                $valid_nodes = variable_get('kent_state_og_allowed_group_node_content_types_'.$name, NULL);
+                if(!empty($valid_nodes)){
+                    if(isset($valid_nodes[kent_state_og\OGContext::$nid])){
+                        $node_allowed[] = $name;
+                    }
+                }
+                else{
+                    $node_allowed[] = $name;
+                }
+            }
+        }
+        
+        $allowed = array_intersect($type_allowed, $node_allowed);
+        
+        //default values for page context variables
+        $vars['og_node_create_allowed'] = $allowed;
+        $vars['og_node_create_menu'] = '';
+        $vars['group_name'] = 'Not a Group';
+        $vars['group_id'] = NULL;
+        $vars['node_id'] = 'Not a Node';
+        $vars['group_url'] = '';
+        $vars['og_user_roles'] = array('Anonymous');
+        $vars['user_name'] = !empty($user->name) ? $user->name : 'Anonymous';
+        
+        //get the current nid
+        if ( arg(0) == 'node' && is_numeric(arg(1)) && ! arg(2) ) {
+            $vars['node_id'] = arg(1);
+        }        
+        
+        //load the og node create menu
+        if(!empty(kent_state_og\OGContext::$nid) && !empty(kent_state_og\OGContext::$type)){
+            $og_node_create_links = og_node_create_links('node', kent_state_og\OGContext::$nid, 'og_group_ref', false, $allowed);
+            $vars['og_node_create_menu'] = $og_node_create_links['og_node_create_links'];
+            $vars['group_name'] = kent_state_og\OGContext::$name;
+            $vars['group_id'] = kent_state_og\OGContext::$nid;
+            $vars['group_url'] = l('View Group', 'node/'.kent_state_og\OGContext::$nid);
+            $vars['og_user_roles'] = og_get_user_roles('node', kent_state_og\OGContext::$nid);
+        }
+    }    
+}
+
+function kent_state_og_admin() {
+
+    $form = array();
+
+    $vocabulary = taxonomy_vocabulary_machine_name_load('campus');
+    $taxonomy_tree = taxonomy_get_tree($vocabulary->vid);
+    $options = array();
+    foreach($taxonomy_tree as $term){
+        $options[$term->tid] = $term->name;
+    }
+    
+    $form['kent_state_og_default_campus'] = array(
+        '#type' => 'select',
+        '#title' => t('Default Campus'),
+        '#default_value' => variable_get('kent_state_og_default_campus', NULL),
+        '#options' => $options,
+        '#description' => t("The default Campus to use when outside an OG page. DO NOT DELETE THE campus VOCABULARY!!!!!"),
+        '#required' => TRUE,
+    );
+
+    $vocabulary = taxonomy_vocabulary_machine_name_load('themes');
+    $taxonomy_tree = taxonomy_get_tree($vocabulary->vid);
+    $options = array();
+    foreach($taxonomy_tree as $term){
+        $options[$term->tid] = $term->name;
+    }
+    
+    $form['kent_state_og_default_theme'] = array(
+        '#type' => 'select',
+        '#title' => t('Default Theme'),
+        '#default_value' => variable_get('kent_state_og_default_theme', NULL),
+        '#options' => $options,
+        '#description' => t("The default Theme to use when outside an OG page. DO NOT DELETE THE theme VOCABULARY!!!!!"),
+        '#required' => TRUE,
+    );
+
+    $groups = og_get_all_group('node');
+
+    $result = db_select('node', 'n')
+                                    ->fields('n', array('title', 'nid', 'type'))
+                                    ->condition('nid', $groups, 'IN')
+                                    ->execute();
+    
+    $options = array();
+    while($row = $result->fetchAssoc()){
+        $options[$row['nid']] = $row['type'].' - '.$row['title'];
+    }    
+    
+    $bundles = og_get_all_group_bundle();
+
+    drupal_add_css('.form-item-kent-state-og-allowed-*');
+    foreach(field_info_instances('node') as $name=>$data){
+
+        $form['kent_state_og_allowed_group_type_content_types_'.$name] = array(
+            '#type' => 'select',
+            '#title' => t($name.' Allowed group types (empty for all)'),
+            '#default_value' => variable_get('kent_state_og_allowed_group_type_content_types_'.$name, NULL),
+            '#options' => $bundles['node'],
+            '#multiple' => TRUE,
+            '#description' => t("Group Types allowed to use this content type. This will control available group content types at the group type level"),
+            '#required' => FALSE,
+            '#attributes' => array('style'=>'height:150px;'),
+        );
+        
+        if(isset($data['og_group_ref'])){
+            $form['kent_state_og_allowed_group_node_content_types_'.$name] = array(
+                '#type' => 'select',
+                '#title' => t($name.' Allowed groups (empty for all)'),
+                '#default_value' => variable_get('kent_state_og_allowed_group_node_content_types_'.$name, NULL),
+                '#options' => $options,
+                '#multiple' => TRUE,
+                '#description' => t("Groups allowed to use this content type."),
+                '#required' => FALSE,
+                '#attributes' => array('style'=>'height:300px;'),
+            );
+        }
+
+    }
+    return system_settings_form($form);
+}
+
+function kent_state_og_menu() {
+    $items = array();
+    $items['admin/settings/kent_state_og'] = array(
+        'title' => 'Kent State Og Settings',
+        'description' => 'This module provides a basic class that compiles our various context information on page load. It also provides some default settings',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('kent_state_og_admin'),
+        'access arguments' => array('administer Kent State OG settings'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+
+function kent_state_og_token_info(){
+    $info['tokens']['node']['og-group-ref-path-url'] = array(
+        'name' =>'OG Group Audience URL path',
+        'description' => 'Uses the URL path from the parent group',
+    );
+    return $info;
+}
+
+function kent_state_og_tokens($type, $tokens, array $data = array(), array $options = array()) {
+    $replacements = array();
+    
+    if ($type == 'node' && !empty($data['node'])) {
+        $node = $data['node'];        
+        foreach ($tokens as $name => $original) {
+            switch($name)
+            {                
+                case 'og-group-ref-path-url':
+                    $og_ref = isset($node->og_group_ref) ? $node->og_group_ref : '';
+                    if(!empty($og_ref)){
+                        $item = array_shift($og_ref[LANGUAGE_NONE]);                        
+                        $path = drupal_get_path_alias('node/'.$item['target_id']);                        
+                        $replacements[$original] = filter_xss($path);
+                }
+                    break;
+            }
+        }        
+    }
+    
+    return $replacements;
+}
+
+/**
+ * Implements hook_views_plugins().
+ */
+function kent_state_og_views_plugins() {
+    return array(
+        'argument validator' => array(
+            'og_short_name' => array(
+                'title' => t('OG Group Short Name'),
+                'handler' => 'kent_state_og_plugin_argument_validate_group_short_name',
+                'path' => drupal_get_path('module', 'kent_state_og')  . '/includes/views/handlers',
+            ),
+        ),
+        'argument default' => array(
+            'og_context_short_name' => array(
+                'title' => t('Current OG group from context via short name'),
+                'handler' => 'kent_state_og_plugin_argument_default_group_context_short_name',
+                'parent' => 'views_plugin_argument_default',
+            ),
+        ),
+    );
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function kent_state_og_theme_registry_alter(&$theme_registry) {
+    // Defined path to current module.
+    $module_path = drupal_get_path('module', 'kent_state_og');
+    // Find all .tpl.php files in this module's folder recursively.
+    $template_file_objects = drupal_find_theme_templates($theme_registry, '.tpl.php', $module_path);
+    // Itterate through all found template file objects.
+    foreach ($template_file_objects as $key => $template_file_object) {
+        // If the entry doesnt exist, add it.
+        if(!isset($theme_registry[$key])){
+            $theme_registry[$key] = $template_file_object;
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key]['type'] = 'theme_engine';
+        }
+        else if (!preg_match('#/themes/#', $theme_registry[$key]['theme path'])) { 
+            // If the template has not already been overridden by a theme.
+            // Alter the theme path and template elements.
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);
+        }
+    }
+}

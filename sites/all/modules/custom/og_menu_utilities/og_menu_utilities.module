@@ -1,0 +1,300 @@
+<?php
+
+define('OG_MENU_UTILITIES_PATH', drupal_get_path('module', 'og_menu_utilities'));
+
+require_once('og_menu_utilities_form.inc');
+
+function _og_menu_utilities_path($full = TRUE){
+    $path = variable_get('og_menu_utilities_images_folder', 'og_menu_utilities_images');
+    $path_full = 'public://' . $path;
+    return ($full ? $path_full : $path);
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function og_menu_utilities_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function og_menu_utilities_permission() {
+    return array(
+        'administer og menu utilities' => array(
+            'title' => t('Administer OG Menu Utilities'),
+            'description' => t('Administer all OG Menu Utility fields'),
+        ),
+    );
+}
+
+/**
+ * Implements hook_form_FORMID_alter
+ * 
+ * Modifies the menu edit form on OG->Group->Menu page
+ */
+function og_menu_utilities_form_og_menu_edit_menu_form_alter(&$form, &$form_state) {
+    
+    $og_menu = db_select('og_menu', 'gid')
+    ->fields('gid')
+    ->condition('menu_name', $form['menu_name']['#default_value'], '=')
+    ->execute()
+    ->fetchAssoc();
+    
+    $form_def = array(
+        '#title' => t('Menu Type'),
+        '#description' => t('Different menus are displayed and used differently. Named menus are unique, and can have only one instance.'),
+        '#type' => 'select',
+        '#options' => array(
+            'primary' => 'Primary Menu',
+            'secondary' => 'Secondary Menu',
+            'tertiary' => 'Tertiary Menu',
+            'other' => 'All other Menus',
+        ),
+        '#weight' => 1,
+        '#default_value' => 'other',
+        '#value' => $og_menu ? $og_menu['menu_type'] : 'other',
+    );
+    
+    $form['og_menu_type'] = $form_def;
+    $form['#submit'][] = '_og_menu_utilities_form_og_menu_edit_menu_form_submit';
+    $form['#validate'][] = '_og_menu_utilities_form_og_menu_edit_menu_form_validate';
+}
+
+/**
+ * Implements hook_form_FORMID_alter
+ * 
+ * Modifies the menu item edit admin form
+ */
+function og_menu_utilities_form_menu_edit_item_alter(&$form, $form_state) {
+    _og_menu_utilities_item_form_info($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORMID_alter
+ * 
+ * Modifies the menu item edit form on OG->Group->Menu page
+ */
+function og_menu_utilities_form_og_menu_edit_item_form_alter(&$form, $form_state) {
+    $nid = isset($_GET['nid']) && is_numeric($_GET['nid']) ? $_GET['nid'] : null;
+    $title = isset($_GET['title']) ? $_GET['title'] : null;
+    _og_menu_utilities_item_form_info($form, $form_state, $nid, $title);
+}
+
+/**
+ * Submit handler for menu items
+ *
+ */
+function _og_menu_utilities_form_og_menu_edit_item_form_submit($form, &$form_state){    
+    $directory_path = _og_menu_utilities_path();
+    file_prepare_directory($directory_path, FILE_CREATE_DIRECTORY);
+
+    //get the options struct back from the db.
+    $options = unserialize(db_query('SELECT options FROM {menu_links} WHERE mlid = :mlid', array(':mlid' => $form_state['values']['mlid']))->fetchField());
+    
+    //init values/ load stuff from the form submission
+    $options['og_menu_utilities_item_image'] = array();
+    $options['og_menu_utilities_item_body'] = $form_state['input']['og_menu_utilities_item_body'];
+    $options['attributes'] = array();
+    $options['attributes']['title'] = $form_state['input']['description'];
+    $options['attributes']['og-menu-utility-image'] = '';
+    $options['attributes']['class'] = explode(' ', $form_state['input']['og_menu_utilities_item_class']);
+    $options['attributes']['alt'] = $form_state['input']['og_menu_utilities_item_alt'];
+    
+    if($form_state['input']['og_menu_utilities_item_target'] === 'framename'){
+        $options['attributes']['target'] = $form_state['input']['og_menu_utilities_item_target_frame'];
+    }
+    else{
+        $options['attributes']['target'] = $form_state['input']['og_menu_utilities_item_target'];
+    }
+
+    //fill out additional attributes from the "anything goes" textarea
+    $options['og_menu_utilities_item_attributes'] = $form_state['input']['og_menu_utilities_item_attributes'];
+    $additionalAttributes = explode("\n", $options['og_menu_utilities_item_attributes']);
+    foreach($additionalAttributes as $attribute){
+        $attributeBoom = explode('=', $attribute);
+        $name = trim($attributeBoom[0]);
+        $value = '';
+        if(isset($attributeBoom[1])){
+            $value = str_replace("\"", "", $attributeBoom[1]);
+        }
+        $options['attributes'][$name] = trim($value);
+    }
+    
+    //oh god, media file handling. Can't wait for Drupal 8 to do this better.
+    $input_file = file_load($form_state['input']['og_menu_utilities_item_image']['fid']);
+    $original_file = file_load($form_state['values']['og_menu_utilities_item_image']['fid']);
+    
+    $input_fid = $input_file ? $input_file->fid : 0;
+    $original_fid = $original_file ? $original_file->fid : 0;
+    
+    //remove the usage of original file that we replaced if it exists
+    if(($input_fid !== $original_fid) && $original_file){
+        file_usage_delete($original_file, 'og_menu_utilities', 'menu', $form_state['values']['mlid']);
+    }
+    
+    //add a usage tick to the new file    
+    if($input_file){
+        $usage = file_usage_list($input_file);
+        //this should be nicer, but it works for now. Dont add an additional usage if the usage instance already exists.
+        //I had some issues with duplicate usages being added incorrectly, so hopefully this works.
+        if(isset($usage['og_menu_utilities']) && 
+           isset($usage['og_menu_utilities']['menu']) && 
+           isset($usage['og_menu_utilities']['menu'][$form_state['values']['mlid']])){
+            //Chill out.
+        }
+        else{
+            file_usage_add($input_file, 'og_menu_utilities', 'menu', $form_state['values']['mlid']);
+        }
+        $options['og_menu_utilities_item_image'] = array(
+            'path' => $input_file->uri,
+            'fid' => $input_file->fid,
+        );
+        $options['attributes']['og-menu-utility-image'] = $input_file->uri;
+    }
+    
+    //update the menu links
+    db_update('menu_links')->fields(array(
+        'options' => serialize($options),
+    ))->condition('mlid', $form_state['values']['mlid'])
+      ->execute(); 
+    
+    //rebuild the cache
+    menu_rebuild();
+}
+
+/**
+ * Menu submit callback
+ * 
+ * Handles menu form submission
+ */
+function _og_menu_utilities_form_og_menu_edit_menu_form_submit($form, &$form_state){
+    $menu_name = $form_state['values']['menu_name'];
+    $gid = $form_state['values']['og_menu_gid'];
+    
+    if($form['#insert']){
+        $menu_name = 'menu-' . $menu_name;
+    }
+    
+    $menu_type = $form_state['input']['og_menu_type'];
+    _og_menu_utilities_update_menu($menu_name, $gid, $menu_type);
+}
+
+function _og_menu_utilities_form_og_menu_edit_menu_form_validate($form, &$form_state){
+    if($form_state['input']['og_menu_type'] === 'primary' 
+       || $form_state['input']['og_menu_type'] === 'secondary' 
+       || $form_state['input']['og_menu_type'] === 'tertiary'){
+        $og_menu = _og_menu_utilities_og_menu_get_group_menus(array('node'=>array($form_state['values']['og_menu_gid'])), $user = NULL, $form_state['input']['og_menu_type']);
+        if(!empty($og_menu) && $og_menu[0]['menu_name'] !== $form_state['values']['menu_name']){
+            form_set_error('og_menu_type', t('This group already has a '.$form_state['input']['og_menu_type'].' menu. Please select a different menu type'));
+        }
+    }
+}
+
+
+/**
+ * Menu update utility
+ * 
+ * Merges changes
+ */
+function _og_menu_utilities_update_menu($menu_name, $gid, $menu_type, $group_type='node'){
+
+    db_merge('og_menu')
+      ->key(array('menu_name' => $menu_name))
+      ->fields(array(
+        'gid' => $gid,
+        'group_type' => $group_type,
+        'menu_type' => $menu_type,
+    ))
+      ->execute();
+}
+
+
+/**
+ * Implements hook_theme_registry_alter()
+ */
+function og_menu_utilities_theme_registry_alter(&$theme_registry) {
+    $theme_registry_copy = $theme_registry;
+    _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'og_menu_utilities', OG_MENU_UTILITIES_PATH);
+    $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+    // A list of templates the module will provide templates for
+    $hooks = array('node');
+    foreach ($hooks as $h) {
+        // Add the key 'theme paths' if it doesn't exist in this theme's registry
+        if (!isset($theme_registry[$h]['theme paths'])) {
+            $theme_registry[$h]['theme paths'] = array();
+        }
+        //Shift this module's directory to the top of the theme path list
+        if(is_array($theme_registry[$h]['theme paths'])) {
+            $first_element = array_shift($theme_registry[$h]['theme paths']);
+            if ($first_element) {
+                array_unshift($theme_registry[$h]['theme paths'], $first_element, OG_MENU_UTILITIES_PATH);
+            } else {
+                array_unshift($theme_registry[$h]['theme paths'], OG_MENU_UTILITIES_PATH);
+            }
+        }
+    }
+}
+
+
+/**
+ * !!!!!!!!!!!!!!!!!!!---MODIFIED FROM OG_MENU MODULE---!!!!!!!!!!!!!!!!!!!!!!
+ * - Modified to return the field added by our og menu mod module
+ *
+ * Returns accessible menus for a given user or gids in a structured array.
+ *
+ * @param array $groups
+ *   An optional array of groups as returned by og_get_entity_groups().
+ * @param StdClass $user
+ *   An optional array of the user object.
+ *
+ * @return array
+ *   A structured array with menus list.
+ */
+function _og_menu_utilities_og_menu_get_group_menus($groups = NULL, $user = NULL, $menu_type=NULL) {
+    if (!$groups) {
+        $groups = og_get_entity_groups('user', $user);
+    }
+    $menus = array();
+
+    $query = db_select('og_menu', 'om');
+    $query->join('menu_custom', 'm', 'om.menu_name = m.menu_name');
+    $query
+          ->fields('om', array('gid', 'group_type', 'menu_name', 'menu_type'))
+          ->fields('m', array('title'));
+
+    $gids_condition = db_or();
+    foreach ($groups as $group_type => $group_gids) {
+        if (!empty($group_gids)) {
+            if($menu_type){
+                $group_gids_condition = db_and()
+          ->condition('om.gid', $group_gids, 'IN')
+          ->condition('om.group_type', $group_type, '=')
+          ->condition('om.menu_type', $menu_type, '=');
+            }
+            else{
+                $group_gids_condition = db_and()
+          ->condition('om.gid', $group_gids, 'IN')
+          ->condition('om.group_type', $group_type, '=');
+            }
+            $gids_condition->condition($group_gids_condition);
+        }
+    }
+
+    if ($gids_condition->count() > 0) {
+        $query->condition($gids_condition);
+    }
+
+    $result = $query->execute();
+
+    while ($record = $result->fetchAssoc()) {
+        $menus[] = $record;
+    }
+
+    return $menus;
+}
+
+?>

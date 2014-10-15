@@ -1,0 +1,57 @@
+.megamenu-menu-tabs-wrapper{    
+    text-align:center;
+    min-height:3rem;  
+}
+
+ul.megamenu-menu-tabs{
+    display:inline-block;
+    margin:0;
+    max-width:1024px;
+}
+
+ul.megamenu-menu-tabs li{
+    float:left;
+    display:block;
+}
+
+ul.megamenu-menu-tabs li a{
+    line-height:3rem;
+    padding-left:.5rem;
+    padding-right:.5rem;
+    float:left;
+}
+
+ul.megamenu-menu-tabs li a:hover{
+    background-color:#ccc;
+}
+
+ul.megamenu-menu-tabs li a.active{
+    background-color:#ccc;
+}
+
+.megamenu-menu-tabs-content-wrapper{
+    width:1024px;
+    margin:0 auto;
+}
+
+.megamenu-tabs-content{
+    list-style:none;
+    color:black;
+    padding:0;
+    margin:0;
+    position:relative;
+    z-index:1;
+}
+
+.megamenu-tabs-content > li{
+    background-color:white;
+    position:absolute;
+    width:100%;
+    visibility:hidden;
+    opacity:0;
+}
+
+.megamenu-tabs-content > li.active{
+    visibility:visible;
+    opacity:1;
+}

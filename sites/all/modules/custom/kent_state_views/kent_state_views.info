@@ -1,0 +1,6 @@
+name = Kent State Views
+description = "Contains additional Views functionality"
+core = 7.x
+
+
+files[] = views-view.tpl.php

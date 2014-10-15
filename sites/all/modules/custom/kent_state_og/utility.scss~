@@ -1,0 +1,193 @@
+@mixin top-caret{
+    content: '';
+    position:absolute;
+    width: 0; 
+    height: 0; 
+    top:1.2em;
+    right:.5em;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;	                
+    border-top: 5px solid #ccc;
+}
+
+@mixin left-caret{
+    content: '';
+    position:absolute;
+    width: 0; 
+    height: 0; 
+    top:1em;
+    left:.5em;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;     
+    border-right:5px solid #ccc; 
+}
+
+@mixin right-caret{
+    content: '';
+    position:absolute;
+    width: 0; 
+    height: 0; 
+    top:1em;
+    right:.5em;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;    
+    border-left: 5px solid #ccc;
+}
+
+@mixin top-item-padding{
+    padding-left:1em !important;
+    padding-right:2em !important;
+}
+
+body.toolbar.toolbar-drawer{
+    #block-kent-state-blocks-user-utility-bar {
+        nav{
+            top:65px;
+        }
+    }
+}
+
+body.toolbar{
+    div[role="document"]{
+        margin-top: 40px;
+    }
+    #block-kent-state-blocks-user-utility-bar {
+        nav{
+            top:30px;
+        }
+    }
+}
+
+body{
+    div[role="document"]{
+        margin-top: 40px;
+    }
+}
+
+#block-kent-state-blocks-user-utility-bar{
+    nav{
+        float:left;
+        width:100%;
+        background-color:#333;
+        position:fixed;
+        top:0;
+        z-index:100;
+        color:white;        
+        box-shadow: inset 0 -1px 0px 0px #555;
+        ul, div{
+            background-color:#333;
+            list-style:none;
+            margin:0;
+        }
+        > ul{
+            box-shadow: inset 0 -1px 0px 0px #555;
+            &.right{
+                > li > ul ul{
+                    left:-100%;
+                    top:0;
+                }
+                ul{
+                    a, span{
+                        &.has-drop:before{
+                            @include left-caret;
+                        }
+                    }
+                }
+            }
+            &.left{
+                ul{
+                    a, span{
+                        &.has-drop:after{
+                            @include right-caret;
+                        }
+                    }
+                }
+                > li > ul ul{
+                    left:100%;
+                    top:0;
+                }
+            }
+            > li {
+                box-shadow: inset 0 -1px 0px 0px #555;
+                &:first-child{
+                    box-shadow: inset 1px 0px 0px 0px #555;
+                }
+                float:left;
+                &.full{
+                    position:inherit;
+                }
+                > a{
+                    &.has-drop{
+                        @include top-item-padding;
+                        box-shadow: inset -1px 0px 0px 0px #555;
+                        padding-right:1em;
+                        &:after{
+                            @include top-caret;
+                        }
+                    }
+                }
+                > span{
+                    &.has-drop{
+                        @include top-item-padding;
+                        box-shadow: inset -1px 0px 0px 0px #555;
+                        padding-right:1em;
+                        &:after{
+                            @include top-caret;
+                        }
+                    }
+                }
+                ul li{
+                    box-shadow: inset 0 1px 1px -1px #ccc;
+                }
+            }
+            ul{
+                transition:all .3s ease-out;
+                position:absolute;
+                visibility:hidden;
+                top:100%;
+                z-index:10;
+                opacity:0;
+                width:100%;
+            }
+            div.full{
+                transition:all .3s ease-out;
+                position:absolute;
+                visibility:hidden;
+                left:0;
+                width:100%;
+                z-index:10;
+                opacity:0;
+            }
+        } 
+        ul{
+            &.left{
+                float:left;
+            }
+            &.right{
+                float:right;
+            }
+            li{
+                transition:all .2s ease-out;
+                position:relative;
+                &.has-drop{
+                    &:hover{
+                        background-color:lighten(#333, 5%);
+                        a:hover, span:hover{
+                            background-color:lighten(#333, 5%);
+                        } 
+                        > ul, > div.full{
+                            visibility:visible;
+                            opacity:1;
+                        }
+                        
+                    }
+                }
+                a,span{
+                    display:block;
+                    padding:.5em;
+                    width:100%;
+                }
+            }
+        }
+    }
+}

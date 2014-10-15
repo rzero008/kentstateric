@@ -1,0 +1,339 @@
+<?php
+
+define('KENT_STATE_BLOCKS_PATH', drupal_get_path('module', 'kent_state_blocks'));
+
+/**
+ * Implements hook_blocks()
+ */
+function kent_state_blocks_block_info() {
+    $blocks = array();
+    $blocks['campus_locations'] = array(
+        'info' => t('Campus Locations'),
+    );
+    $blocks['site_utility_menu'] = array(
+        'info' => t('Site Utility Menu Block'),
+    );
+    $blocks['campus_donate'] = array(
+        'info' => t('Campus Donate'),
+    );
+    $blocks['special_feature'] = array(
+        'info' => t('Special Feature'),
+    );
+    $blocks['campus_logo'] = array(
+        'info' => t('Campus Logo Header'),
+    );
+    //BECAUSE I REFUSE TO INSTALL MULTIBLOCK FOR ONE DUPE.
+    $blocks['campus_logo_footer'] = array(
+        'info' => t('Campus Logo Footer'),
+    );
+    $blocks['group_header'] = array(
+        'info' => t('Group Header'),
+    );
+    $blocks['group_megamenu'] = array(
+        'info' => t('Group Megamenu'),
+    );
+    $blocks['group_foundation_topbar'] = array(
+        'info' => t('Group Foundation Topbar'),
+    );
+    $blocks['group_primary_menu'] = array(
+        'info' => t('Group Primary Menu'),
+    );
+    $blocks['group_footer_menu'] = array(
+        'info' => t('Group Footer Menu'),
+    );
+    $blocks['campus_footer'] = array(
+        'info' => t('Campus Footer'),
+    );
+    return $blocks;
+}
+
+/**
+ * Implements hook_block_view()
+ */
+function kent_state_blocks_block_view($delta = '') {
+    kent_state_og\OGContext::init();
+    $block = array();
+    if($delta === 'campus_locations'){
+        $block['subject'] = 'Campus Locations Custom Block';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'site_utility_menu'){
+        $block['subject'] = 'Site Utility Menu Custom Block';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_donate'){
+        $block['subject'] = 'Campus Donate Custom Block';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'special_feature'){
+        $block['subject'] = 'Special Feature';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_logo'){
+        $block['subject'] = 'Campus Logo 1';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_logo_footer'){
+        $block['subject'] = 'Campus Logo 2';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_header'){
+        $block['subject'] = 'Group Header';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_megamenu'){
+        $block['subject'] = 'Group Megamenu';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_foundation_topbar'){
+        $block['subject'] = 'Group Foundation Topbar';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_primary_menu'){
+        $block['subject'] = 'Group Primary Menu';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_footer_menu'){
+        $block['subject'] = 'Group Footer Menu';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_footer'){
+        $block['subject'] = 'Campus Footer';
+        $block['content'] = 'Placeholder';
+    }
+    return $block;
+}
+
+/**
+ * Implements template_preprocess_block()
+ */
+function kent_state_blocks_preprocess_block(&$vars){
+    if($vars['block']->delta === 'campus_locations'){
+        //locations preprocessing
+        $menu = menu_tree_output(menu_tree_all_data('menu-campus-locations'));
+        $vars['content'] = render($menu);
+        $vars['kent_state_blocks_menu'] = $menu;
+    }
+    else if($vars['block']->delta === 'site_utility_menu'){
+        $menu = menu_tree_output(menu_tree_all_data('menu-site-utility-menu'));
+        $vars['menu'] = $menu;
+    }
+    else if($vars['block']->delta === 'campus_donate'){
+        //donate preprocessing
+        $image = '';
+        if(!empty(kent_state_og\OGContext::$campus->field_campus_donate_image)){
+            $image = '<img src="'.file_create_url(kent_state_og\OGContext::$campus->field_campus_donate_image[LANGUAGE_NONE][0]['uri']).'">';
+        }
+        if(!empty(kent_state_og\OGContext::$campus->field_campus_donate_link)){
+            $vars['content'] = l(kent_state_og\OGContext::$campus->field_campus_donate_link[LANGUAGE_NONE][0]['title'].$image,
+                                 kent_state_og\OGContext::$campus->field_campus_donate_link[LANGUAGE_NONE][0]['url'],
+                                 array('html'=>true, 'absolute'=>true));
+        }
+        else{
+            $vars['content'] = '';
+        }
+    }
+    else if($vars['block']->delta === 'special_feature'){
+        $vars['content'] = '<a href="/go"><img src="/'.KENT_STATE_BLOCKS_PATH.'/images/discover-logo-small.png"><div>Get Started <i class="fa fa-arrow-circle-o-right"></i></div></a>';
+    }
+    else if($vars['block']->delta === 'campus_logo' || $vars['block']->delta === 'campus_logo_footer'){
+        //campus logo preprocessing
+        $campus_path = '<front>';
+        if(!empty(kent_state_og\OGContext::$campus->field_campus_group_ref)){
+            $campus_path = 'node/'.kent_state_og\OGContext::$campus->field_campus_group_ref[LANGUAGE_NONE][0]['target_id'];
+            if(variable_get('site_frontpage', '/') === $campus_path){
+                $campus_path = '<front>';
+            }
+        }
+
+        $campus_logo = '<img src="'.'/'.KENT_STATE_BLOCKS_PATH.'/images/default.svg'.'">';
+        //load light theme logo
+        if(!empty(kent_state_og\OGContext::$theme->field_theme_color_style)){
+            if(kent_state_og\OGContext::$theme->field_theme_color_style[LANGUAGE_NONE][0]['value'] === 'light'){
+                if(!empty(kent_state_og\OGContext::$campus->field_campus_light_logo)){
+                    $campus_logo = '<img src="'.file_create_url(kent_state_og\OGContext::$campus->field_campus_light_logo[LANGUAGE_NONE][0]['uri']).'">';
+                }
+            }
+            //load dark theme logo
+            else if(kent_state_og\OGContext::$theme->field_theme_color_style[LANGUAGE_NONE][0]['value'] === 'dark'){
+                if(!empty(kent_state_og\OGContext::$campus->field_campus_dark_logo)){
+                    $campus_logo = '<img src="'.file_create_url(kent_state_og\OGContext::$campus->field_campus_dark_logo[LANGUAGE_NONE][0]['uri']).'">';
+                }
+            }
+        }
+
+        $vars['content'] = _kent_state_blocks_render_campus_logo();
+    }
+    else if($vars['block']->delta === 'group_header'){
+        //group header preprocessing
+        $content = '';
+        if(!empty(kent_state_og\OGContext::$nid) && kent_state_og\OGContext::$type !== 'campus_group'){
+            if(!empty(kent_state_og\OGContext::$parent) && kent_state_og\OGContext::$parent->type !== 'campus_group'){
+                $content .= '<div class="group-parent-name">'.l(kent_state_og\OGContext::$parent->name, 'node/'.kent_state_og\OGContext::$parent->nid).'</div>';
+            }
+            $content .= '<div class="group-name">'.l(kent_state_og\OGContext::$name, 'node/'.kent_state_og\OGContext::$nid).'</div>';
+            if(!empty(kent_state_og\OGContext::$contact['address']) && !empty(kent_state_og\OGContext::$contact['phone']) && !empty(kent_state_og\OGContext::$contact['email'])){
+                $contact = '<span class="address">'.kent_state_og\OGContext::$contact['address'].'</span>';
+                $contact .= '<span class="phone">'.kent_state_og\OGContext::$contact['phone'].'</span>';
+                $contact .= '<span class="email">'.l(kent_state_og\OGContext::$contact['email'], 'mailto:'.kent_state_og\OGContext::$contact['email'], array('absolute' => TRUE)).'</span>';
+                $content .= '<div class="group-info"><span class="address">'.$contact.'</span></div>';
+            }
+        }
+        else{
+            $vars['classes_array'][] = 'hide';
+        }
+        $vars['content'] = $content;
+    }
+    else if($vars['block']->delta === 'group_megamenu'){
+        //group megamenu preprocessing
+        $vars['classes_array'][] = 'group-megamenu';
+        drupal_add_css(KENT_STATE_BLOCKS_PATH.'/megamenu.css', array('type'=>'file'));
+        drupal_add_js(KENT_STATE_BLOCKS_PATH.'/megamenu.js', array('type'=>'file', 'scope'=>'footer'));
+
+        $menu = kent_state_og\OGContext::$primaryMenu;
+        $vars['menu'] = $menu;
+        $vars['content'] = '';
+    }
+    else if($vars['block']->delta === 'group_foundation_topbar'){
+        $menu = kent_state_og\OGContext::$primaryMenu;
+        $vars['menu'] = $menu;
+        $vars['logo'] = _kent_state_blocks_render_campus_logo();
+        $vars['content'] = '';
+    }
+    else if($vars['block']->delta === 'group_primary_menu'){
+        //group primary menu preprocessing
+        $menu = menu_tree_output(menu_tree_page_data(kent_state_og\OGContext::$primaryMenuName, NULL, TRUE));
+        $vars['menu'] = $menu;
+        $vars['content'] = render($menu);
+    }
+    else if($vars['block']->delta === 'group_footer_menu'){
+        //group footer menu preprocessing
+        $menu = kent_state_og\OGContext::$primaryMenu;
+        $vars['menu'] = $menu;
+        $vars['content'] = '';
+    }
+    else if($vars['block']->delta === 'campus_footer'){
+        $vars['phone'] = '';
+        $vars['mailing_address'] = '';
+        $vars['street_address'] = '';
+        $vars['email'] = '';
+        $vars['body'] = '';
+        if(!empty(kent_state_og\OGContext::$campus)){
+            $vars['phone'] = !empty(kent_state_og\OGContext::$campus->field_campus_phone)
+                                   ? kent_state_og\OGContext::$campus->field_campus_phone[LANGUAGE_NONE][0]['value'] : '';
+            $vars['street_address'] = !empty(kent_state_og\OGContext::$campus->field_campus_address)
+                                            ? kent_state_og\OGContext::$campus->field_campus_address[LANGUAGE_NONE][0]['value'] : '';
+            $vars['mailing_address'] = !empty(kent_state_og\OGContext::$campus->field_campus_mailing_address)
+                                             ? kent_state_og\OGContext::$campus->field_campus_mailing_address[LANGUAGE_NONE][0]['value'] : '';
+            $vars['email'] = !empty(kent_state_og\OGContext::$campus->field_campus_email)
+                                   ? kent_state_og\OGContext::$campus->field_campus_email[LANGUAGE_NONE][0]['value'] : '';
+            $vars['body'] = !empty(kent_state_og\OGContext::$campus->description) ? kent_state_og\OGContext::$campus->description : '';
+        }
+        $vars['content'] = '';
+    }
+}
+
+function _kent_state_blocks_render_campus_logo(){
+    $campus_path = '<front>';
+    if(!empty(kent_state_og\OGContext::$campus->field_campus_group_ref)){
+        $campus_path = 'node/'.kent_state_og\OGContext::$campus->field_campus_group_ref[LANGUAGE_NONE][0]['target_id'];
+        if(variable_get('site_frontpage', '/') === $campus_path){
+            $campus_path = '<front>';
+        }
+    }
+
+    $campus_logo = '<img src="'.'/'.KENT_STATE_BLOCKS_PATH.'/images/default.svg'.'">';
+    //load light theme logo
+    if(!empty(kent_state_og\OGContext::$theme->field_theme_color_style)){
+        if(kent_state_og\OGContext::$theme->field_theme_color_style[LANGUAGE_NONE][0]['value'] === 'light'){
+            if(!empty(kent_state_og\OGContext::$campus->field_campus_light_logo)){
+                $campus_logo = '<img src="'.file_create_url(kent_state_og\OGContext::$campus->field_campus_light_logo[LANGUAGE_NONE][0]['uri']).'">';
+            }
+        }
+        //load dark theme logo
+        else if(kent_state_og\OGContext::$theme->field_theme_color_style[LANGUAGE_NONE][0]['value'] === 'dark'){
+            if(!empty(kent_state_og\OGContext::$campus->field_campus_dark_logo)){
+                $campus_logo = '<img src="'.file_create_url(kent_state_og\OGContext::$campus->field_campus_dark_logo[LANGUAGE_NONE][0]['uri']).'">';
+            }
+        }
+    }
+    return l($campus_logo, $campus_path, array('html'=>true));
+}
+
+/**
+ * Implements ctools_block_info().
+ */
+function kent_state_blocks_ctools_block_info($module, $delta, &$info) {
+
+    if($delta === 'campus_locations'){
+        $info['category'] = t('Group Context Panes');
+    }
+    else if($delta === 'group_primary_menu'){
+        $info['category'] = t('Group Context Panes');
+    }
+}
+
+/**
+ * Implements hook_preprocess_panels_pane().
+ */
+function kent_state_blocks_preprocess_panels_pane(&$vars) {
+    if($vars['pane']->subtype === 'kent_state_blocks-campus_locations'){
+        $menu = menu_tree_output(menu_tree_all_data('menu-campus-locations'));
+        $vars['content'] = render($menu);
+        $vars['kent_state_blocks_menu'] = $menu;
+    }
+    else if($vars['pane']->subtype === 'kent_state_blocks-group_primary_menu'){
+        $menu = menu_tree_output(menu_tree_page_data(kent_state_og\OGContext::$primaryMenuName, NULL, TRUE));
+        $vars['menu'] = $menu;
+        $vars['content'] = render($menu);
+    }
+    else if($vars['pane']->subtype === 'kent_state_blocks-special_feature'){
+        $vars['content'] = '<a href="/go"><img src="/'.KENT_STATE_BLOCKS_PATH.'/images/discover-logo-small.png"><div>Get Started <i class="fa fa-arrow-circle-o-right"></i></div></a>';
+    }
+}
+
+function kent_state_blocks_menu() {
+    $items = array();
+    $items['kent-state-blocks/region-exports/%'] = array(
+        'title' => 'Region Export',
+        'page callback' => 'kent_state_blocks_export_header',
+        'page arguments' => array(2),
+        'access callback' => TRUE,
+        'expanded' => TRUE,
+    );
+    return $items;
+}
+
+//blank markup, handle this at the theme level
+function kent_state_blocks_export_header($arg = null) {
+    return array(
+        '#markup' => '',
+        'kent_state_blocks_region_exports' => $arg,
+    );
+}
+
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function kent_state_blocks_theme_registry_alter(&$theme_registry) {
+    // Defined path to current module.
+    $module_path = drupal_get_path('module', 'kent_state_blocks');
+    // Find all .tpl.php files in this module's folder recursively.
+    $template_file_objects = drupal_find_theme_templates($theme_registry, '.tpl.php', $module_path);
+    // Itterate through all found template file objects.
+    foreach ($template_file_objects as $key => $template_file_object) {
+        // If the entry doesnt exist, add it.
+        if(!isset($theme_registry[$key])){
+            $theme_registry[$key] = $template_file_object;
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key]['type'] = 'theme_engine';
+        }
+        else if (!preg_match('#/themes/#', $theme_registry[$key]['theme path'])) {
+            // If the template has not already been overridden by a theme.
+            // Alter the theme path and template elements.
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);
+        }
+    }
+}

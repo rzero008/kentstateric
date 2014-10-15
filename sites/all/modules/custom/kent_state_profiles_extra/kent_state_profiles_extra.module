@@ -1,0 +1,79 @@
+<?php
+
+define('KENT_STATE_PROFILES_EXTRA_PATH', drupal_get_path('module', 'kent_state_profiles_extra'));
+
+function kent_state_profiles_extra_install() {
+    // Get the weight of the module we want to compare against
+    $weight = db_select('system', 's')
+              ->fields('s', array('weight'))
+              ->condition('name', 'kent_state_og', '=')
+              ->execute()
+              ->fetchField();
+    // Set our module to a weight 1 heavier, so ours moves lower in execution order
+    db_update('system')
+              ->fields(array('weight' => $weight + 1))
+              ->condition('name', 'kent_state_profile_extra', '=')
+              ->execute();    
+}
+
+/**
+ * Implements template_preprocess_block()
+ */
+function kent_state_profiles_extra_preprocess_block(&$vars){
+    if($vars['block']->delta === 'user_utility_bar'){
+        //load the og node create menu
+        /* if(!empty(kent_state_og\OGContext::$nid) && !empty(kent_state_og\OGContext::$type)){
+        foreach($vars['og_node_create_allowed'] as $key => $val){
+        $vars['og_node_create_allowed'][$key][] = 'profile';
+        $vars['og_node_create_allowed'][$key][] = 'location';
+        }
+        $og_node_create_links = og_node_create_links('node', 
+        kent_state_og\OGContext::$nid, 
+        'og_group_ref', 
+        false, 
+        $vars['og_node_create_allowed'][kent_state_og\OGContext::$type]
+        );
+        
+        $vars['og_node_create_menu'] = $og_node_create_links['og_node_create_links'];
+        } */
+    }
+}
+
+function kent_state_profiles_extra_form_profile_node_form_alter(&$form, &$form_state, $form_id) {
+    global $user;
+    
+    //if we're on the add form, check the current user for previous profiles, clear out the author field if any profile exists
+    if($form['nid']['#value'] === NULL){
+        $result = db_query('SELECT n.nid FROM {node} n WHERE n.uid = :uid AND n.type = :type', 
+                           array(':uid' => $user->uid, ':type'=>'profile')
+                           );
+        if($result->rowCount() === 1){
+            drupal_set_message('<b>Existing profile found for your user, author field has been set to blank on this form.</b>', 'warning');
+            $form['author']['name']['#default_value'] = '';
+        }
+    }
+}
+
+function kent_state_profiles_extra_node_validate($node, $form, &$form_state){
+    if($node->type === 'profile'){
+        //check for existing profiles bound to this user
+        if(!empty($form['author']['name']['#value'])){
+            $user = user_load_by_name($form['author']['name']['#value']);
+            $result = db_query('SELECT n.nid FROM {node} n WHERE n.uid = :uid AND n.type = :type', 
+                               array(':uid' => $user->uid, ':type'=>'profile')
+                               );
+            if($node->nid === NULL){
+                if($result->rowCount() === 1){
+                    form_set_error('author', t('A user account may only have one profile. Set the author to blank to make an unconnected Profile'));
+                }
+            }
+            else{
+                foreach($result as $row){
+                    if($row->nid !== $node->nid){
+                        form_set_error('author', t('This user already has a profile, please edit the existing one at node/'.$row->nid));
+                    }
+                }
+            }
+        }
+    }
+}

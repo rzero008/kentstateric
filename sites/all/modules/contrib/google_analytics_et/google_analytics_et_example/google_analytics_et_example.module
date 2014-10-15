@@ -1,0 +1,63 @@
+<?php
+/**
+ * @file
+ * Google Analytics Event Tracking Module API Example.
+ *
+ * Shows a quick and dirty example of how to integrate the Google Analytics
+ * Event Tracking Module into an user's module.
+ */
+
+/**
+ * Implements hook_google_analytics_et_api().
+ */
+function google_analytics_et_example_google_analytics_et_api() {
+  return _google_analytics_et_example_set_selectors_array();
+}
+
+/**
+ * Internal function returns the example selectors array.
+ */
+function _google_analytics_et_example_set_selectors_array() {
+  $selectors = array();
+
+  $selectors = array(
+    array(
+      'event' => 'mousedown',
+      'selector' => '#main-menu li a',
+      'category' => 'main navigation',
+      'action' => 'click',
+      'label' => '!text',
+      'value' => 0,
+      'noninteraction' => TRUE,
+    ),
+    array(
+      'event' => 'mousedown',
+      'selector' => 'a#logo',
+      'category' => 'Home Link',
+      'action' => 'click',
+      'label' => 'Logo',
+      'value' => 0,
+      'noninteraction' => TRUE,
+    ),
+    array(
+      'event' => 'mousedown',
+      'selector' => 'div#site-name a[rel="home"]',
+      'category' => 'Home Link',
+      'action' => 'click',
+      'label' => 'Site Name',
+      'value' => 0,
+      'noninteraction' => TRUE,
+    ),
+    array(
+      'event' => 'blur',
+      'selector' => '#edit-name',
+      'category' => '[TEST] blurred from the user login username/email input field.',
+      'action' => 'BLUR',
+      'label' => '!test', // !test token causes the the output to be alerted to the screen.
+      'value' => 0,
+      'noninteraction' => TRUE,
+    ),
+  );
+
+  return $selectors;
+}

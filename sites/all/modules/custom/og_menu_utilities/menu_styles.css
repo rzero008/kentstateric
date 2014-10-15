@@ -1,0 +1,14 @@
+.og_menu {
+  list-style: none;
+  margin: 0; }
+  .og_menu.list_icon img {
+    display: block; }
+  .og_menu.inline_icon li {
+    display: inline-block; }
+  .og_menu.inline_icon img {
+    display: block; }
+  .og_menu.html_grid li {
+    text-align: center; }
+  .og_menu.html_grid img {
+    display: block;
+    margin: 0 auto; }

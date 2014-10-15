@@ -1,0 +1,39 @@
+<?php
+
+function kent_state_forms_schema(){
+    $schema = array();
+    
+    $schema['contact_form'] = array(
+        'description' => 'The contact form table',
+        'fields' => array(
+            'fe_id' => array(
+                'description' => 'Primary Key',
+                'type' => 'serial',
+                'unsigned' => true,
+                'not null' => true,                
+            ),
+            'full_name' => array(
+                'description' => 'submitters full name',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => true,
+                'default' => '',
+            ),
+            'email' => array(
+                'description' => 'submitters email',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => true,
+                'default' => '',
+            ),
+            'content' => array(
+                'description' => 'content of form body',
+                'type' => 'text',
+                'not null' => true,
+            ),
+        ),
+        'primary key' => array('fe_id'),        
+    );
+    
+    return $schema;
+}

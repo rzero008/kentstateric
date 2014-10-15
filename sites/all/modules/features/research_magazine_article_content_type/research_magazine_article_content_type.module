@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Research Magazine Article Content Type feature.
+ */
+
+include_once 'research_magazine_article_content_type.features.inc';

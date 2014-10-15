@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Kent State Social Media feature.
+ */
+
+include_once 'kent_state_social_media.features.inc';

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Kent State Events Feeds feature.
+ */
+
+include_once 'kent_state_events_feeds.features.inc';

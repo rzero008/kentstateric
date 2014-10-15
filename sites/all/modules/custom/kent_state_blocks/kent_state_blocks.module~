@@ -1,0 +1,182 @@
+<?php
+
+define('KENT_STATE_BLOCKS_PATH', drupal_get_path('module', 'kent_state_blocks'));
+
+/**
+ * Implements hook_blocks()
+ */
+function kent_state_blocks_block_info() {
+    $blocks = array();
+    $blocks['campus_locations'] = array(
+        'info' => t('Campus Locations'),
+    );
+    $blocks['campus_donate'] = array(
+        'info' => t('Campus Donate'),
+    );
+    $blocks['campus_logo'] = array(
+        'info' => t('Campus Logo'),
+    );
+    //BECAUSE I REFUSE TO INSTALL MULTIBLOCK.
+    $blocks['campus_logo_footer'] = array(
+        'info' => t('Campus Logo Footer'),
+    );
+    $blocks['group_header'] = array(
+        'info' => t('Group Header'),
+    );
+    $blocks['group_megamenu'] = array(
+        'info' => t('Group Megamenu'),
+    );
+    $blocks['group_footer_menu'] = array(
+        'info' => t('Group Footer Menu'),
+    );
+    $blocks['campus_footer'] = array(
+        'info' => t('Campus Footer'),
+    );
+    return $blocks;
+}
+
+/**
+ * Implements hook_block_view()
+ */
+function kent_state_blocks_block_view($delta = '') {
+    kent_state_og\OGContext::init();
+    $block = array();
+    if($delta === 'campus_locations'){
+        $block['subject'] = 'Campus Locations';
+        $menu = menu_tree_output(menu_tree_all_data('menu-campus-locations'));
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_donate'){
+        $block['subject'] = 'Campus Donate';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_logo'){
+        $block['subject'] = 'Campus Logo';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_logo_footer'){
+        $block['subject'] = 'Campus Logo Footer';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_header'){
+        $block['subject'] = 'Group Header';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_megamenu'){
+        $block['subject'] = 'Group Megamenu';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'group_footer_menu'){
+        $block['subject'] = 'Group Footer Menu';
+        $block['content'] = 'Placeholder';
+    }
+    else if($delta === 'campus_footer'){
+        $block['subject'] = 'Campus Footer';
+        $block['content'] = 'Placeholder';
+    }
+    return $block;
+}
+
+/**
+ * Implements template_preprocess_block()
+ */
+function kent_state_blocks_preprocess_block(&$vars){
+    if($vars['block']->delta === 'campus_locations'){
+        //locations preprocessing
+        $menu = menu_tree_output(menu_tree_all_data('menu-campus-locations'));
+        $vars['content'] = render($menu);
+    }
+    else if($vars['block']->delta === 'campus_donate'){
+        //donate preprocessing
+        $image = '';
+        if(!empty(kent_state_og\OGContext::$campus->field_campus_donate_image)){
+            $image = '<img src="'.file_create_url(kent_state_og\OGContext::$campus->field_campus_donate_image[LANGUAGE_NONE][0]['uri']).'">';
+        }
+        $vars['content'] = l(kent_state_og\OGContext::$campus->field_campus_donate_link[LANGUAGE_NONE][0]['title'].$image, 
+                             kent_state_og\OGContext::$campus->field_campus_donate_link[LANGUAGE_NONE][0]['url'], 
+                             array('html'=>true, 'absolute'=>true));
+    }
+    else if($vars['block']->delta === 'campus_logo' || $vars['block']->delta === 'campus_logo_footer'){
+        //campus logo preprocessing
+        if(!empty(kent_state_og\OGContext::$campus->field_campus_dark_logo)){
+            $path = !empty(kent_state_og\OGContext::$campus->field_campus_group_ref) 
+                          ? '/'.drupal_get_path_alias('node/'.kent_state_og\OGContext::$campus->field_campus_group_ref[LANGUAGE_NONE][0]['target_id'])
+                          : '/';
+            $vars['content'] = '<a href="'.$path.'"><img src="'.file_create_url(kent_state_og\OGContext::$campus->field_campus_dark_logo[LANGUAGE_NONE][0]['uri']).'"></a>';
+        }
+        $vars['content'] = '<a href="/"><img src="'.'/'.KENT_STATE_BLOCKS_PATH.'/images/default.svg'.'"></a>';
+    }
+    else if($vars['block']->delta === 'group_header'){
+        //group header preprocessing
+        $content = '';
+        if(!empty(kent_state_og\OGContext::$parent)){
+            $content .= '<div class="group-parent-name">'.l(kent_state_og\OGContext::$parent->name, 'node/'.kent_state_og\OGContext::$parent->nid).'</div>';
+        }        
+        $content .= '<div class="group-name">'.l(kent_state_og\OGContext::$name, 'node/'.kent_state_og\OGContext::$nid).'</div>';
+        $contact = '<span class="address">'.kent_state_og\OGContext::$contact['address'].'</span>';
+        $contact .= '<span class="phone">'.kent_state_og\OGContext::$contact['phone'].'</span>';
+        $contact .= '<span class="email">'.l(kent_state_og\OGContext::$contact['email'], 'mailto:'.kent_state_og\OGContext::$contact['email'], array('absolute' => TRUE)).'</span>';
+        $content .= '<div class="group-info"><span class="address">'.$contact.'</span></div>';
+        $vars['content'] = $content;
+    }
+    else if($vars['block']->delta === 'group_megamenu'){
+        //group megamenu preprocessing
+        $vars['classes_array'][] = 'group-megamenu';
+        drupal_add_css(KENT_STATE_BLOCKS_PATH.'/megamenu.css', array('type'=>'file'));
+        drupal_add_js(KENT_STATE_BLOCKS_PATH.'/megamenu.js', array('type'=>'file', 'scope'=>'footer'));
+        
+        $menu = kent_state_og\OGContext::$primaryMenu;
+        $vars['menu'] = $menu;
+        $vars['content'] = '';
+    }
+    else if($vars['block']->delta === 'group_footer_menu'){
+        //group footer menu preprocessing
+        $menu = kent_state_og\OGContext::$primaryMenu;
+        $vars['menu'] = $menu;
+        $vars['content'] = '';
+    }
+    else if($vars['block']->delta === 'campus_footer'){
+        $vars['phone'] = '';
+        $vars['mailing_address'] = '';
+        $vars['street_address'] = '';
+        $vars['email'] = '';
+        $vars['body'] = '';
+        if(!empty(kent_state_og\OGContext::$campus)){
+            $vars['phone'] = !empty(kent_state_og\OGContext::$campus->field_campus_phone) 
+                                             ? kent_state_og\OGContext::$campus->field_campus_phone[LANGUAGE_NONE][0]['value'] : '';
+            $vars['street_address'] = !empty(kent_state_og\OGContext::$campus->field_campus_address) 
+                                             ? kent_state_og\OGContext::$campus->field_campus_address[LANGUAGE_NONE][0]['value'] : '';
+            $vars['mailing_address'] = !empty(kent_state_og\OGContext::$campus->field_campus_mailing_address) 
+                                             ? kent_state_og\OGContext::$campus->field_campus_mailing_address[LANGUAGE_NONE][0]['value'] : '';
+            $vars['email'] = !empty(kent_state_og\OGContext::$campus->field_campus_email) 
+                                             ? kent_state_og\OGContext::$campus->field_campus_email[LANGUAGE_NONE][0]['value'] : '';
+            $vars['body'] = !empty(kent_state_og\OGContext::$campus->description) ? kent_state_og\OGContext::$campus->description : '';
+        }
+        $vars['content'] = '';
+    }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function kent_state_blocks_theme_registry_alter(&$theme_registry) {
+    // Defined path to current module.
+    $module_path = drupal_get_path('module', 'kent_state_blocks');
+    // Find all .tpl.php files in this module's folder recursively.
+    $template_file_objects = drupal_find_theme_templates($theme_registry, '.tpl.php', $module_path);
+    // Itterate through all found template file objects.
+    foreach ($template_file_objects as $key => $template_file_object) {
+        // If the entry doesnt exist, add it.
+        if(!isset($theme_registry[$key])){
+            $theme_registry[$key] = $template_file_object;
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key]['type'] = 'theme_engine';
+        }
+        else if (!preg_match('#/themes/#', $theme_registry[$key]['theme path'])) { 
+            // If the template has not already been overridden by a theme.
+            // Alter the theme path and template elements.
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);
+        }
+    }
+}

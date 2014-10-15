@@ -1,0 +1,113 @@
+<?php
+
+define('KENT_STATE_PANELS_PATH', drupal_get_path('module', 'kent_state_panels'));
+
+function kent_state_panels_preprocess_panels_pane(&$vars) {
+    drupal_add_css(KENT_STATE_PANELS_PATH.'/libraries/owl.carousel.2.0.0-beta.2.4/assets/owl.carousel.css', array('type'=>'file'));
+    drupal_add_css(KENT_STATE_PANELS_PATH.'/kent_state_panels.css', array('type'=>'file'));
+    drupal_add_js(KENT_STATE_PANELS_PATH.'/libraries/owl.carousel.2.0.0-beta.2.4/owl.carousel.min.js', array('type'=>'file', 'scope'=>'footer'));
+    drupal_add_js(KENT_STATE_PANELS_PATH.'/kent_state_panels.js', array('type'=>'file', 'scope'=>'footer'));
+    drupal_add_js(array('kentStatePanels'=> array('carousel'=>null)), 'setting');
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function kent_state_panels_ctools_plugin_directory($owner, $plugin_type) {
+    if ($owner == 'panels') {
+        return "plugins/$plugin_type";
+    }
+}
+
+/**
+ * Implements hook_entity_info_alter()
+ */
+function kent_state_panels_entity_info_alter(&$entity_info) {
+    $entity_info['node']['view modes']['slideshow_video'] = array(
+        'label' => t('Slideshow Video'),
+        'custom settings' => TRUE,
+    );   
+    $entity_info['node']['view modes']['slideshow_image'] = array(
+        'label' => t('Slideshow Image'),
+        'custom settings' => TRUE,
+    );   
+}
+
+/**
+ * Implements hook_preprocess_node()
+ */
+function kent_state_panels_preprocess_node(&$vars) {
+    if($vars['view_mode'] === 'slideshow_image' || $vars['view_mode'] === 'slideshow_video'){
+        $vars['classes_array'][] = 'display-mode-slideshow';
+    }
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
+}
+
+function kent_state_panels_form_alter(&$form, &$form_state, $form_id){
+    if ($form_id == 'panelizer_settings_form') {
+        $form['#submit'][] = 'kent_state_panels_panelizer_settings_form_submit';
+    }
+}
+
+function kent_state_panels_panelizer_settings_form_submit($form, &$form_state){
+    //node, user, etc : $form_state['entity']->panelizer['page_manager']->entity_type
+    //nid             : $form_state['entity']->nid
+    
+    $panelizer_key = 'panelizer:'.$form_state['entity']->panelizer['page_manager']->entity_type.':'.$form_state['entity']->nid.':page_manager';
+    $result = db_query('SELECT t.cid, t.filename, t.css FROM {ctools_css_cache} t WHERE t.cid=:cid', array(':cid'=>$panelizer_key))->fetchObject();    
+
+    //if our newly submitted css differs, kill the cache and the old file. Panels will regen everything on entity render the next time the panel is viewed.
+    if($result && ($form_state['input']['css'] !== $result->css)){
+        db_query('DELETE FROM {ctools_css_cache} WHERE cid=:cid', array(':cid'=>$panelizer_key));
+        file_unmanaged_delete($result->filename);
+    }
+}
+
+/**
+ * Implements hook_node_presave().
+ * @param $node
+ * Fixes pathauto resaving without an overridden path on IPE submission
+ */
+function kent_state_panels_node_presave($node) {
+  // Work-around for pathauto issue #936222
+  if (module_exists('pathauto') && !empty($node->nid) && (!isset($node->path) || !isset($node->path['pathauto']))) {
+    // This node was saved without specifying the desired pathauto options,
+    // probably programmatically.
+    // We will only create a new alias automatically if and only if the original
+    // title matched the auto generated path alias.
+    $original = $node->original;
+    module_load_include('inc', 'pathauto');
+    $uri = entity_uri('node', $original);
+    $path = drupal_get_path_alias($uri['path'], $original->language);
+    $pathauto_alias = pathauto_create_alias('node', 'return', $uri['path'], array('node' => $original), $original->type, $original->language);
+    if (!isset($node->path)) {
+      $node->path = array();
+    }
+    $node->path['pathauto'] = ($path != $uri['path'] && $path == $pathauto_alias);
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function kent_state_panels_theme_registry_alter(&$theme_registry) {
+    // Defined path to current module.
+    $module_path = drupal_get_path('module', 'kent_state_og');
+    // Find all .tpl.php files in this module's folder recursively.
+    $template_file_objects = drupal_find_theme_templates($theme_registry, '.tpl.php', $module_path);
+    // Itterate through all found template file objects.
+    foreach ($template_file_objects as $key => $template_file_object) {
+        // If the entry doesnt exist, add it.
+        if(!isset($theme_registry[$key])){
+            $theme_registry[$key] = $template_file_object;
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key]['type'] = 'theme_engine';
+        }
+        else if (!preg_match('#/themes/#', $theme_registry[$key]['theme path'])) { 
+            // If the template has not already been overridden by a theme.
+            // Alter the theme path and template elements.
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);
+        }
+    }
+}
